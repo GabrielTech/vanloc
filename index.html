@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VANLOC | Transportes e Locações</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Ícones -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="logo">
+            <i class="fa-solid fa-van-shuttle"></i>
+            <span>VAN<span class="destaque">LOC</span></span>
+        </div>
+
+        <nav>
+
+            <a href="#inicio">Início</a>
+            <a href="#viagens">Viagens</a>
+            <a href="#como-funciona">Como funciona</a>
+            <a href="#vantagens">Vantagens</a>
+
+            <button class="btn-motorista" onclick="abrirMotorista()">
+                <i class="fa-solid fa-id-card"></i>
+                Sou Motorista
+            </button>
+
+            <button class="btn-login" onclick="abrirLogin()">
+                <i class="fa-solid fa-user"></i>
+                Entrar
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero" id="inicio">
+
+        <div class="hero-text">
+
+            <span class="tag">
+                <i class="fa-solid fa-location-dot"></i>
+                Transporte inteligente
+            </span>
+
+            <h1>
+                Encontre sua próxima
+                <span>viagem de Van</span>
+            </h1>
+
+            <p>
+                Descubra para onde as vans estão indo, confira horários,
+                motoristas e reserve sua viagem de forma rápida e segura.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#viagens" class="btn-principal">
+                    Encontrar viagem
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+                <button class="btn-secundario" onclick="abrirMotorista()">
+                    <i class="fa-solid fa-steering-wheel"></i>
+                    Cadastrar minha Van
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-card">
+
+            <div class="status-online">
+                <span></span>
+                VANLOC ONLINE
+            </div>
+
+            <i class="fa-solid fa-van-shuttle van-icon"></i>
+
+            <h3>Seu destino começa aqui</h3>
+
+            <p>
+                Encontre viagens disponíveis perto de você.
+            </p>
+
+            <div class="estatisticas">
+
+                <div>
+                    <strong>+120</strong>
+                    <span>Viagens</span>
+                </div>
+
+                <div>
+                    <strong>+50</strong>
+                    <span>Motoristas</span>
+                </div>
+
+                <div>
+                    <strong>24h</strong>
+                    <span>Online</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= BUSCA ================= -->
+
+    <section class="busca">
+
+        <div class="busca-container">
+
+            <h2>Para onde você quer ir?</h2>
+
+            <div class="form-busca">
+
+                <div class="campo">
+
+                    <label>
+                        <i class="fa-solid fa-location-dot"></i>
+                        Destino
+                    </label>
+
+                    <input
+                        type="text"
+                        id="buscaDestino"
+                        placeholder="Ex: Recife, Serra Talhada..."
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label>
+                        <i class="fa-solid fa-calendar"></i>
+                        Data
+                    </label>
+
+                    <input type="date" id="buscaData">
+
+                </div>
+
+
+                <button onclick="buscarViagem()">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    Buscar
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= VIAGENS ================= -->
+
+    <section class="viagens" id="viagens">
+
+        <div class="titulo-secao">
+
+            <span>VIAGENS DISPONÍVEIS</span>
+
+            <h2>Encontre sua Van</h2>
+
+            <p>
+                Confira os próximos destinos disponíveis na plataforma.
+            </p>
+
+        </div>
+
+
+        <div class="viagens-grid" id="listaViagens">
+
+
+            <!-- VIAGEM 1 -->
+
+            <div class="viagem-card">
+
+                <div class="imagem-van">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80"
+                        alt="Van de transporte"
+                    >
+
+                    <span class="disponivel">
+                        Disponível
+                    </span>
+
+                </div>
+
+
+                <div class="viagem-info">
+
+                    <div class="motorista-info">
+
+                        <div class="avatar">
+                            CF
+                        </div>
+
+                        <div>
+
+                            <strong>Charles Fernando</strong>
+
+                            <span>
+                                Motorista verificado
+                                <i class="fa-solid fa-circle-check"></i>
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <h3>
+                        Serra Talhada
+                        <i class="fa-solid fa-arrow-right"></i>
+                        Recife
+                    </h3>
+
+
+                    <div class="detalhes">
+
+                        <span>
+                            <i class="fa-solid fa-calendar"></i>
+                            15/09/2026
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-clock"></i>
+                            06:30
+                        </span>
+
+                    </div>
+
+
+                    <div class="rodape-viagem">
+
+                        <div>
+
+                            <small>A partir de</small>
+
+                            <strong>R$ 80,00</strong>
+
+                        </div>
+
+
+                        <button onclick="reservar('Serra Talhada para Recife')">
+
+                            Reservar
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- VIAGEM 2 -->
+
+            <div class="viagem-card">
+
+                <div class="imagem-van">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1516939884455-1445c8652f83?auto=format&fit=crop&w=800&q=80"
+                        alt="Van de transporte"
+                    >
+
+                    <span class="disponivel">
+                        Disponível
+                    </span>
+
+                </div>
+
+
+                <div class="viagem-info">
+
+                    <div class="motorista-info">
+
+                        <div class="avatar">
+                            JM
+                        </div>
+
+                        <div>
+
+                            <strong>João Martins</strong>
+
+                            <span>
+                                Motorista verificado
+                                <i class="fa-solid fa-circle-check"></i>
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <h3>
+                        Recife
+                        <i class="fa-solid fa-arrow-right"></i>
+                        Caruaru
+                    </h3>
+
+
+                    <div class="detalhes">
+
+                        <span>
+                            <i class="fa-solid fa-calendar"></i>
+                            16/09/2026
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-clock"></i>
+                            08:00
+                        </span>
+
+                    </div>
+
+
+                    <div class="rodape-viagem">
+
+                        <div>
+
+                            <small>A partir de</small>
+
+                            <strong>R$ 45,00</strong>
+
+                        </div>
+
+
+                        <button onclick="reservar('Recife para Caruaru')">
+
+                            Reservar
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- VIAGEM 3 -->
+
+            <div class="viagem-card">
+
+                <div class="imagem-van">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=800&q=80"
+                        alt="Van de transporte"
+                    >
+
+                    <span class="disponivel">
+                        Disponível
+                    </span>
+
+                </div>
+
+
+                <div class="viagem-info">
+
+                    <div class="motorista-info">
+
+                        <div class="avatar">
+                            MS
+                        </div>
+
+                        <div>
+
+                            <strong>Marcos Silva</strong>
+
+                            <span>
+                                Motorista verificado
+                                <i class="fa-solid fa-circle-check"></i>
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <h3>
+                        Serra Talhada
+                        <i class="fa-solid fa-arrow-right"></i>
+                        Petrolina
+                    </h3>
+
+
+                    <div class="detalhes">
+
+                        <span>
+                            <i class="fa-solid fa-calendar"></i>
+                            17/09/2026
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-clock"></i>
+                            05:00
+                        </span>
+
+                    </div>
+
+
+                    <div class="rodape-viagem">
+
+                        <div>
+
+                            <small>A partir de</small>
+
+                            <strong>R$ 100,00</strong>
+
+                        </div>
+
+
+                        <button onclick="reservar('Serra Talhada para Petrolina')">
+
+                            Reservar
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= COMO FUNCIONA ================= -->
+
+    <section class="como-funciona" id="como-funciona">
+
+        <div class="titulo-secao">
+
+            <span>FÁCIL E RÁPIDO</span>
+
+            <h2>Como funciona?</h2>
+
+        </div>
+
+
+        <div class="passos">
+
+
+            <div class="passo">
+
+                <div class="numero">1</div>
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <h3>Procure</h3>
+
+                <p>
+                    Pesquise o destino e encontre vans disponíveis.
+                </p>
+
+            </div>
+
+
+
+            <div class="passo">
+
+                <div class="numero">2</div>
+
+                <i class="fa-solid fa-van-shuttle"></i>
+
+                <h3>Escolha</h3>
+
+                <p>
+                    Compare horários, motoristas e valores.
+                </p>
+
+            </div>
+
+
+
+            <div class="passo">
+
+                <div class="numero">3</div>
+
+                <i class="fa-solid fa-ticket"></i>
+
+                <h3>Reserve</h3>
+
+                <p>
+                    Faça sua reserva diretamente pela plataforma.
+                </p>
+
+            </div>
+
+
+
+            <div class="passo">
+
+                <div class="numero">4</div>
+
+                <i class="fa-solid fa-route"></i>
+
+                <h3>Viaje</h3>
+
+                <p>
+                    Acompanhe todas as informações da sua viagem.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= VANTAGENS ================= -->
+
+    <section class="vantagens" id="vantagens">
+
+        <div class="vantagens-texto">
+
+            <span>POR QUE USAR A VANLOC?</span>
+
+            <h2>
+                Uma nova forma de encontrar
+                transporte.
+            </h2>
+
+            <p>
+                A VANLOC conecta passageiros e motoristas em uma única
+                plataforma, facilitando a divulgação e localização de viagens.
+            </p>
+
+
+            <ul>
+
+                <li>
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Motoristas cadastrados
+
+                </li>
+
+
+                <li>
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Informações claras sobre horários
+
+                </li>
+
+
+                <li>
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Fotos e informações da Van
+
+                </li>
+
+
+                <li>
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Reservas rápidas
+
+                </li>
+
+
+                <li>
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Avaliação de motoristas
+
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="vantagens-card">
+
+            <i class="fa-solid fa-map-location-dot"></i>
+
+            <h3>Viagens em um só lugar</h3>
+
+            <p>
+                Motoristas podem divulgar suas viagens e passageiros podem
+                encontrar o transporte ideal.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= MOTORISTA ================= -->
+
+    <section class="motorista-banner">
+
+        <div>
+
+            <span>É MOTORISTA?</span>
+
+            <h2>
+                Cadastre sua Van na VANLOC
+            </h2>
+
+            <p>
+                Divulgue seus destinos, horários e encontre novos passageiros.
+            </p>
+
+        </div>
+
+
+        <button onclick="abrirMotorista()">
+
+            <i class="fa-solid fa-plus"></i>
+
+            Cadastrar Motorista
+
+        </button>
+
+    </section>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-logo">
+
+            <div class="logo">
+
+                <i class="fa-solid fa-van-shuttle"></i>
+
+                VAN<span>LOC</span>
+
+            </div>
+
+            <p>
+                Transportes e Locações
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h4>VANLOC</h4>
+
+            <a href="#inicio">Início</a>
+
+            <a href="#viagens">Viagens</a>
+
+            <a href="#como-funciona">Como funciona</a>
+
+        </div>
+
+
+        <div>
+
+            <h4>Contato</h4>
+
+            <p>
+                <i class="fa-solid fa-envelope"></i>
+                contato@vanloc.com.br
+            </p>
+
+            <p>
+                <i class="fa-solid fa-phone"></i>
+                (87) 99999-9999
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <div class="copyright">
+
+        © 2026 VANLOC Transportes e Locações.
+        Todos os direitos reservados.
+
+    </div>
+
+
+
+    <!-- ================= MODAL LOGIN ================= -->
+
+    <div class="modal" id="modalLogin">
+
+        <div class="modal-content">
+
+            <button class="fechar" onclick="fecharLogin()">
+                &times;
+            </button>
+
+
+            <div class="modal-logo">
+
+                <i class="fa-solid fa-van-shuttle"></i>
+
+                <h2>VANLOC</h2>
+
+                <p>Acesse sua conta</p>
+
+            </div>
+
+
+            <form id="formLogin">
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    placeholder="Digite seu email"
+                    required
+                >
+
+
+                <label>Senha</label>
+
+                <input
+                    type="password"
+                    placeholder="Digite sua senha"
+                    required
+                >
+
+
+                <button type="submit">
+
+                    Entrar
+
+                </button>
+
+
+                <p class="criar-conta">
+
+                    Ainda não possui uma conta?
+
+                    <a href="#" onclick="abrirCadastroUsuario()">
+                        Criar conta
+                    </a>
+
+                </p>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= MODAL CADASTRO USUARIO ================= -->
+
+    <div class="modal" id="modalUsuario">
+
+        <div class="modal-content">
+
+            <button class="fechar" onclick="fecharUsuario()">
+                &times;
+            </button>
+
+
+            <h2>Cadastro de Passageiro</h2>
+
+            <p class="subtitulo">
+                Crie sua conta para solicitar viagens.
+            </p>
+
+
+            <form id="formUsuario">
+
+                <label>Nome completo</label>
+
+                <input
+                    type="text"
+                    id="nomeUsuario"
+                    required
+                >
+
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    id="emailUsuario"
+                    required
+                >
+
+
+                <label>Telefone</label>
+
+                <input
+                    type="tel"
+                    id="telefoneUsuario"
+                    placeholder="(00) 00000-0000"
+                    required
+                >
+
+
+                <label>Senha</label>
+
+                <input
+                    type="password"
+                    id="senhaUsuario"
+                    required
+                >
+
+
+                <button type="submit">
+
+                    Criar Conta
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= MODAL MOTORISTA ================= -->
+
+    <div class="modal" id="modalMotorista">
+
+        <div class="modal-content modal-grande">
+
+            <button class="fechar" onclick="fecharMotorista()">
+                &times;
+            </button>
+
+
+            <h2>
+                Cadastro de Motorista
+            </h2>
+
+            <p class="subtitulo">
+                Cadastre suas informações e divulgue suas viagens.
+            </p>
+
+
+            <form id="formMotorista">
+
+
+                <h3>
+                    <i class="fa-solid fa-user"></i>
+                    Informações Pessoais
+                </h3>
+
+
+                <div class="form-grid">
+
+                    <div>
+
+                        <label>Nome completo</label>
+
+                        <input
+                            type="text"
+                            id="nomeMotorista"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Telefone</label>
+
+                        <input
+                            type="tel"
+                            id="telefoneMotorista"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Email</label>
+
+                        <input
+                            type="email"
+                            id="emailMotorista"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>CPF</label>
+
+                        <input
+                            type="text"
+                            id="cpfMotorista"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <h3>
+                    <i class="fa-solid fa-van-shuttle"></i>
+                    Informações da Van
+                </h3>
+
+
+                <div class="form-grid">
+
+                    <div>
+
+                        <label>Marca / Modelo</label>
+
+                        <input
+                            type="text"
+                            id="modeloVan"
+                            placeholder="Ex: Renault Master"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Placa</label>
+
+                        <input
+                            type="text"
+                            id="placaVan"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Quantidade de passageiros</label>
+
+                        <input
+                            type="number"
+                            id="lugaresVan"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Foto da Van</label>
+
+                        <input
+                            type="file"
+                            id="fotoVan"
+                            accept="image/*"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <h3>
+                    <i class="fa-solid fa-route"></i>
+                    Informações da Viagem
+                </h3>
+
+
+                <div class="form-grid">
+
+                    <div>
+
+                        <label>Origem</label>
+
+                        <input
+                            type="text"
+                            id="origem"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Destino</label>
+
+                        <input
+                            type="text"
+                            id="destino"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Data da viagem</label>
+
+                        <input
+                            type="date"
+                            id="dataViagem"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Horário da viagem</label>
+
+                        <input
+                            type="time"
+                            id="horarioViagem"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Valor por passageiro</label>
+
+                        <input
+                            type="number"
+                            id="valorViagem"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Vagas disponíveis</label>
+
+                        <input
+                            type="number"
+                            id="vagasViagem"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn-cadastro"
+                >
+
+                    <i class="fa-solid fa-check"></i>
+
+                    Cadastrar Viagem
+
+                </button>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= MODAL RESERVA ================= -->
+
+    <div class="modal" id="modalReserva">
+
+        <div class="modal-content">
+
+            <button class="fechar" onclick="fecharReserva()">
+                &times;
+            </button>
+
+
+            <h2>Reservar Viagem</h2>
+
+            <p id="viagemSelecionada"></p>
+
+
+            <form id="formReserva">
+
+                <label>Nome completo</label>
+
+                <input
+                    type="text"
+                    required
+                >
+
+
+                <label>Telefone</label>
+
+                <input
+                    type="tel"
+                    required
+                >
+
+
+                <label>Quantidade de passageiros</label>
+
+                <input
+                    type="number"
+                    min="1"
+                    value="1"
+                    required
+                >
+
+
+                <button type="submit">
+
+                    Confirmar Reserva
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= NOTIFICAÇÃO ================= -->
+
+    <div id="notificacao" class="notificacao">
+
+        <i class="fa-solid fa-circle-check"></i>
+
+        <span id="mensagemNotificacao"></span>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
