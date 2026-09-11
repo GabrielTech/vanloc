@@ -1,0 +1,1506 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    font-family: 'Inter', sans-serif;
+
+    background: #f7f9fc;
+
+    color: #1d2939;
+
+}
+
+
+/* =========================
+HEADER
+========================= */
+
+header {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 20px 8%;
+
+    background: white;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+
+}
+
+
+.logo {
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+    color: #172554;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+}
+
+
+.logo i {
+
+    color: #2563eb;
+
+}
+
+
+.logo .destaque,
+.logo span {
+
+    color: #2563eb;
+
+}
+
+
+nav {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 22px;
+
+}
+
+
+nav a {
+
+    text-decoration: none;
+
+    color: #475467;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+}
+
+
+nav a:hover {
+
+    color: #2563eb;
+
+}
+
+
+button {
+
+    border: none;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+}
+
+
+.btn-login {
+
+    background: #172554;
+
+    color: white;
+
+    padding: 11px 18px;
+
+    border-radius: 8px;
+
+}
+
+
+.btn-motorista {
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    padding: 11px 16px;
+
+    border-radius: 8px;
+
+}
+
+
+/* =========================
+HERO
+========================= */
+
+.hero {
+
+    min-height: 580px;
+
+    padding: 80px 10%;
+
+    display: grid;
+
+    grid-template-columns: 1fr 420px;
+
+    gap: 80px;
+
+    align-items: center;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #eff6ff,
+        #ffffff
+    );
+
+}
+
+
+.tag {
+
+    background: #dbeafe;
+
+    color: #2563eb;
+
+    padding: 8px 14px;
+
+    border-radius: 30px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    display: inline-flex;
+
+    gap: 7px;
+
+    margin-bottom: 22px;
+
+}
+
+
+.hero h1 {
+
+    font-size: 55px;
+
+    line-height: 1.1;
+
+    margin-bottom: 20px;
+
+    color: #172554;
+
+}
+
+
+.hero h1 span {
+
+    color: #2563eb;
+
+}
+
+
+.hero p {
+
+    color: #667085;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    max-width: 600px;
+
+}
+
+
+.hero-buttons {
+
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 30px;
+
+}
+
+
+.btn-principal {
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 15px 22px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+}
+
+
+.btn-secundario {
+
+    background: white;
+
+    color: #172554;
+
+    padding: 15px 20px;
+
+    border-radius: 10px;
+
+    border: 1px solid #d0d5dd;
+
+}
+
+
+/* CARD HERO */
+
+.hero-card {
+
+    background: #172554;
+
+    padding: 35px;
+
+    border-radius: 25px;
+
+    color: white;
+
+    text-align: center;
+
+    box-shadow: 0 25px 50px rgba(37,99,235,0.2);
+
+}
+
+
+.status-online {
+
+    display: inline-flex;
+
+    gap: 8px;
+
+    align-items: center;
+
+    background: rgba(255,255,255,0.1);
+
+    padding: 8px 14px;
+
+    border-radius: 30px;
+
+    font-size: 12px;
+
+}
+
+
+.status-online span {
+
+    width: 8px;
+
+    height: 8px;
+
+    background: #22c55e;
+
+    border-radius: 50%;
+
+}
+
+
+.van-icon {
+
+    font-size: 130px;
+
+    margin: 35px 0;
+
+    color: #60a5fa;
+
+}
+
+
+.hero-card h3 {
+
+    font-size: 24px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.hero-card p {
+
+    color: #cbd5e1;
+
+    font-size: 14px;
+
+}
+
+
+.estatisticas {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 35px;
+
+    border-top: 1px solid rgba(255,255,255,0.1);
+
+    padding-top: 25px;
+
+}
+
+
+.estatisticas div {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.estatisticas strong {
+
+    font-size: 20px;
+
+}
+
+
+.estatisticas span {
+
+    font-size: 12px;
+
+    color: #94a3b8;
+
+}
+
+
+/* =========================
+BUSCA
+========================= */
+
+.busca {
+
+    padding: 0 10%;
+
+    margin-top: -40px;
+
+    position: relative;
+
+}
+
+
+.busca-container {
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 18px;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+
+}
+
+
+.busca-container h2 {
+
+    margin-bottom: 20px;
+
+}
+
+
+.form-busca {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 180px;
+
+    gap: 20px;
+
+}
+
+
+.campo {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.campo label {
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    margin-bottom: 8px;
+
+}
+
+
+input {
+
+    padding: 13px;
+
+    border: 1px solid #d0d5dd;
+
+    border-radius: 8px;
+
+    outline: none;
+
+}
+
+
+input:focus {
+
+    border-color: #2563eb;
+
+}
+
+
+.form-busca button {
+
+    background: #2563eb;
+
+    color: white;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+}
+
+
+/* =========================
+SEÇÕES
+========================= */
+
+.viagens,
+.como-funciona {
+
+    padding: 100px 10%;
+
+}
+
+
+.titulo-secao {
+
+    text-align: center;
+
+    margin-bottom: 50px;
+
+}
+
+
+.titulo-secao span {
+
+    color: #2563eb;
+
+    font-weight: 700;
+
+    font-size: 13px;
+
+}
+
+
+.titulo-secao h2 {
+
+    font-size: 36px;
+
+    color: #172554;
+
+    margin: 10px 0;
+
+}
+
+
+.titulo-secao p {
+
+    color: #667085;
+
+}
+
+
+/* =========================
+VIAGENS
+========================= */
+
+.viagens-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+
+}
+
+
+.viagem-card {
+
+    background: white;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+
+    transition: 0.3s;
+
+}
+
+
+.viagem-card:hover {
+
+    transform: translateY(-7px);
+
+}
+
+
+.imagem-van {
+
+    height: 190px;
+
+    position: relative;
+
+}
+
+
+.imagem-van img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+
+.disponivel {
+
+    position: absolute;
+
+    top: 15px;
+
+    right: 15px;
+
+    background: #dcfce7;
+
+    color: #15803d;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+}
+
+
+.viagem-info {
+
+    padding: 22px;
+
+}
+
+
+.motorista-info {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.avatar {
+
+    width: 45px;
+
+    height: 45px;
+
+    border-radius: 50%;
+
+    background: #dbeafe;
+
+    color: #2563eb;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-weight: 700;
+
+}
+
+
+.motorista-info div:last-child {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.motorista-info strong {
+
+    font-size: 13px;
+
+}
+
+
+.motorista-info span {
+
+    font-size: 10px;
+
+    color: #16a34a;
+
+}
+
+
+.viagem-info h3 {
+
+    color: #172554;
+
+    margin-bottom: 18px;
+
+    font-size: 18px;
+
+}
+
+
+.viagem-info h3 i {
+
+    color: #2563eb;
+
+    margin: 0 7px;
+
+}
+
+
+.detalhes {
+
+    display: flex;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+
+    color: #667085;
+
+    font-size: 12px;
+
+}
+
+
+.detalhes i {
+
+    color: #2563eb;
+
+}
+
+
+.rodape-viagem {
+
+    border-top: 1px solid #eaecf0;
+
+    padding-top: 18px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+
+.rodape-viagem small {
+
+    display: block;
+
+    color: #98a2b3;
+
+    font-size: 10px;
+
+}
+
+
+.rodape-viagem strong {
+
+    color: #2563eb;
+
+}
+
+
+.rodape-viagem button {
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 10px 16px;
+
+    border-radius: 7px;
+
+}
+
+
+/* =========================
+COMO FUNCIONA
+========================= */
+
+.como-funciona {
+
+    background: white;
+
+}
+
+
+.passos {
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 25px;
+
+}
+
+
+.passo {
+
+    text-align: center;
+
+    padding: 30px;
+
+    position: relative;
+
+}
+
+
+.numero {
+
+    width: 28px;
+
+    height: 28px;
+
+    background: #2563eb;
+
+    color: white;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    margin: auto;
+
+    font-size: 12px;
+
+}
+
+
+.passo > i {
+
+    font-size: 45px;
+
+    color: #2563eb;
+
+    margin: 20px 0;
+
+}
+
+
+.passo p {
+
+    color: #667085;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================
+VANTAGENS
+========================= */
+
+.vantagens {
+
+    padding: 100px 10%;
+
+    display: grid;
+
+    grid-template-columns: 1fr 400px;
+
+    gap: 80px;
+
+    align-items: center;
+
+}
+
+
+.vantagens-texto span {
+
+    color: #2563eb;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+.vantagens-texto h2 {
+
+    font-size: 40px;
+
+    margin: 15px 0;
+
+    color: #172554;
+
+}
+
+
+.vantagens-texto p {
+
+    color: #667085;
+
+    line-height: 1.7;
+
+}
+
+
+.vantagens-texto ul {
+
+    list-style: none;
+
+    margin-top: 30px;
+
+}
+
+
+.vantagens-texto li {
+
+    margin: 16px 0;
+
+    font-weight: 500;
+
+}
+
+
+.vantagens-texto li i {
+
+    color: #22c55e;
+
+    margin-right: 8px;
+
+}
+
+
+.vantagens-card {
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #172554
+    );
+
+    color: white;
+
+    padding: 60px 40px;
+
+    border-radius: 25px;
+
+    text-align: center;
+
+}
+
+
+.vantagens-card i {
+
+    font-size: 80px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.vantagens-card h3 {
+
+    font-size: 25px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.vantagens-card p {
+
+    color: #dbeafe;
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================
+BANNER MOTORISTA
+========================= */
+
+.motorista-banner {
+
+    margin: 0 10% 80px;
+
+    padding: 55px;
+
+    border-radius: 20px;
+
+    background: #172554;
+
+    color: white;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+
+.motorista-banner span {
+
+    color: #60a5fa;
+
+    font-weight: 700;
+
+    font-size: 13px;
+
+}
+
+
+.motorista-banner h2 {
+
+    font-size: 32px;
+
+    margin: 10px 0;
+
+}
+
+
+.motorista-banner p {
+
+    color: #cbd5e1;
+
+}
+
+
+.motorista-banner button {
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 16px 22px;
+
+    border-radius: 10px;
+
+    font-weight: 600;
+
+}
+
+
+/* =========================
+FOOTER
+========================= */
+
+footer {
+
+    background: #0f172a;
+
+    color: white;
+
+    padding: 60px 10%;
+
+    display: grid;
+
+    grid-template-columns: 2fr 1fr 1fr;
+
+    gap: 40px;
+
+}
+
+
+footer h4 {
+
+    margin-bottom: 20px;
+
+}
+
+
+footer a {
+
+    display: block;
+
+    color: #94a3b8;
+
+    text-decoration: none;
+
+    margin-bottom: 10px;
+
+    font-size: 14px;
+
+}
+
+
+footer p {
+
+    color: #94a3b8;
+
+    margin: 10px 0;
+
+    font-size: 14px;
+
+}
+
+
+.copyright {
+
+    background: #020617;
+
+    color: #64748b;
+
+    text-align: center;
+
+    padding: 20px;
+
+    font-size: 12px;
+
+}
+
+
+/* =========================
+MODAIS
+========================= */
+
+.modal {
+
+    display: none;
+
+    position: fixed;
+
+    z-index: 1000;
+
+    inset: 0;
+
+    background: rgba(15,23,42,0.75);
+
+    padding: 30px;
+
+    overflow-y: auto;
+
+}
+
+
+.modal-content {
+
+    background: white;
+
+    width: 100%;
+
+    max-width: 450px;
+
+    margin: 40px auto;
+
+    padding: 35px;
+
+    border-radius: 18px;
+
+    position: relative;
+
+}
+
+
+.modal-grande {
+
+    max-width: 850px;
+
+}
+
+
+.fechar {
+
+    position: absolute;
+
+    right: 20px;
+
+    top: 15px;
+
+    background: transparent;
+
+    font-size: 30px;
+
+    color: #667085;
+
+}
+
+
+.modal-logo {
+
+    text-align: center;
+
+    margin-bottom: 25px;
+
+}
+
+
+.modal-logo i {
+
+    font-size: 40px;
+
+    color: #2563eb;
+
+}
+
+
+.modal h2 {
+
+    color: #172554;
+
+    margin-bottom: 8px;
+
+}
+
+
+.subtitulo {
+
+    color: #667085;
+
+    margin-bottom: 25px;
+
+}
+
+
+form label {
+
+    display: block;
+
+    margin: 15px 0 7px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+
+form input {
+
+    width: 100%;
+
+}
+
+
+form button[type="submit"] {
+
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 14px;
+
+    background: #2563eb;
+
+    color: white;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+}
+
+
+.criar-conta {
+
+    text-align: center;
+
+    margin-top: 20px;
+
+    font-size: 13px;
+
+    color: #667085;
+
+}
+
+
+.criar-conta a {
+
+    color: #2563eb;
+
+    font-weight: 600;
+
+}
+
+
+.form-grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+
+}
+
+
+#formMotorista h3 {
+
+    margin-top: 30px;
+
+    color: #172554;
+
+}
+
+
+.btn-cadastro {
+
+    background: #16a34a !important;
+
+}
+
+
+/* =========================
+NOTIFICAÇÃO
+========================= */
+
+.notificacao {
+
+    position: fixed;
+
+    right: 25px;
+
+    bottom: 25px;
+
+    background: #172554;
+
+    color: white;
+
+    padding: 16px 20px;
+
+    border-radius: 10px;
+
+    display: none;
+
+    align-items: center;
+
+    gap: 10px;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+
+    z-index: 2000;
+
+}
+
+
+.notificacao i {
+
+    color: #22c55e;
+
+}
+
+
+/* =========================
+RESPONSIVO
+========================= */
+
+@media (max-width: 1000px) {
+
+    nav a {
+        display: none;
+    }
+
+
+    .hero {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .hero-card {
+
+        max-width: 500px;
+
+    }
+
+
+    .viagens-grid {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+
+    .passos {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+
+    .vantagens {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    header {
+
+        padding: 15px 5%;
+
+    }
+
+
+    .btn-motorista {
+
+        display: none;
+
+    }
+
+
+    .hero {
+
+        padding: 60px 7%;
+
+    }
+
+
+    .hero h1 {
+
+        font-size: 38px;
+
+    }
+
+
+    .hero-buttons {
+
+        flex-direction: column;
+
+    }
+
+
+    .form-busca {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .viagens-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .passos {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .vantagens {
+
+        padding: 70px 7%;
+
+    }
+
+
+    .vantagens-texto h2 {
+
+        font-size: 30px;
+
+    }
+
+
+    .motorista-banner {
+
+        margin: 0 5% 50px;
+
+        padding: 35px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 25px;
+
+    }
+
+
+    footer {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .form-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
