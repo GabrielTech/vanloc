@@ -14,19 +14,15 @@ html {
 
 
 body {
-
     font-family: 'Inter', sans-serif;
-
     background: #f7f9fc;
-
     color: #1d2939;
-
 }
 
 
-/* =========================
+/* =====================================================
 HEADER
-========================= */
+===================================================== */
 
 header {
 
@@ -77,10 +73,16 @@ header {
 }
 
 
-.logo .destaque,
 .logo span {
 
     color: #2563eb;
+
+}
+
+
+.logo .destaque {
+
+    color: #172554;
 
 }
 
@@ -91,7 +93,7 @@ nav {
 
     align-items: center;
 
-    gap: 22px;
+    gap: 18px;
 
 }
 
@@ -102,7 +104,7 @@ nav a {
 
     color: #475467;
 
-    font-size: 14px;
+    font-size: 13px;
 
     font-weight: 500;
 
@@ -153,9 +155,9 @@ button {
 }
 
 
-/* =========================
+/* =====================================================
 HERO
-========================= */
+===================================================== */
 
 .hero {
 
@@ -171,9 +173,7 @@ HERO
 
     align-items: center;
 
-    background:
-
-    linear-gradient(
+    background: linear-gradient(
         135deg,
         #eff6ff,
         #ffffff
@@ -281,7 +281,7 @@ HERO
 }
 
 
-/* CARD HERO */
+/* HERO CARD */
 
 .hero-card {
 
@@ -401,9 +401,9 @@ HERO
 }
 
 
-/* =========================
+/* =====================================================
 BUSCA
-========================= */
+===================================================== */
 
 .busca {
 
@@ -500,9 +500,9 @@ input:focus {
 }
 
 
-/* =========================
+/* =====================================================
 SEÇÕES
-========================= */
+===================================================== */
 
 .viagens,
 .como-funciona {
@@ -550,9 +550,9 @@ SEÇÕES
 }
 
 
-/* =========================
+/* =====================================================
 VIAGENS
-========================= */
+===================================================== */
 
 .viagens-grid {
 
@@ -752,10 +752,19 @@ VIAGENS
 
     align-items: center;
 
+    gap: 15px;
+
 }
 
 
-.rodape-viagem small {
+.preco {
+
+    min-width: 120px;
+
+}
+
+
+.preco small {
 
     display: block;
 
@@ -766,29 +775,374 @@ VIAGENS
 }
 
 
-.rodape-viagem strong {
+.preco strong {
 
     color: #2563eb;
+
+    font-size: 19px;
 
 }
 
 
-.rodape-viagem button {
+.preco .valor-minimo {
+
+    color: #16a34a;
+
+    font-size: 9px;
+
+    margin-top: 5px;
+
+}
+
+
+.botoes-viagem {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    width: 145px;
+
+}
+
+
+.btn-planos {
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    border: 1px solid #bfdbfe;
+
+    padding: 9px 8px;
+
+    border-radius: 7px;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+}
+
+
+.btn-planos:hover {
+
+    background: #dbeafe;
+
+}
+
+
+.btn-reservar {
 
     background: #2563eb;
 
     color: white;
 
-    padding: 10px 16px;
+    padding: 9px 8px;
 
     border-radius: 7px;
+
+    font-size: 11px;
+
+    font-weight: 600;
 
 }
 
 
-/* =========================
+/* =====================================================
+PASSAGEIRO
+===================================================== */
+
+.passageiro {
+
+    padding: 100px 10%;
+
+    background: #eff6ff;
+
+    display: grid;
+
+    grid-template-columns: 1fr 450px;
+
+    gap: 80px;
+
+    align-items: center;
+
+}
+
+
+.passageiro-info > span {
+
+    color: #2563eb;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+.passageiro-info h2 {
+
+    font-size: 42px;
+
+    color: #172554;
+
+    margin: 15px 0 20px;
+
+    line-height: 1.2;
+
+}
+
+
+.passageiro-info > p {
+
+    color: #667085;
+
+    line-height: 1.8;
+
+    font-size: 16px;
+
+    margin-bottom: 35px;
+
+}
+
+
+.beneficios-passageiro {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+}
+
+
+.beneficios-passageiro > div {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+}
+
+
+.beneficios-passageiro i {
+
+    width: 50px;
+
+    height: 50px;
+
+    background: white;
+
+    color: #2563eb;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 20px;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+
+}
+
+
+.beneficios-passageiro strong {
+
+    color: #172554;
+
+    display: block;
+
+    margin-bottom: 5px;
+
+}
+
+
+.beneficios-passageiro p {
+
+    color: #667085;
+
+    font-size: 13px;
+
+}
+
+
+.card-cadastro-passageiro {
+
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 20px 50px rgba(37,99,235,0.12);
+
+}
+
+
+.icone-passageiro {
+
+    width: 60px;
+
+    height: 60px;
+
+    background: #2563eb;
+
+    color: white;
+
+    border-radius: 15px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 25px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.card-cadastro-passageiro h2 {
+
+    color: #172554;
+
+    margin-bottom: 8px;
+
+}
+
+
+.card-cadastro-passageiro > p {
+
+    color: #667085;
+
+    font-size: 14px;
+
+    margin-bottom: 20px;
+
+}
+
+
+#formCadastroPassageiro label {
+
+    display: block;
+
+    margin-top: 15px;
+
+    margin-bottom: 7px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #344054;
+
+}
+
+
+#formCadastroPassageiro input {
+
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #d0d5dd;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+}
+
+
+.termos {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 20px;
+
+}
+
+
+.termos input {
+
+    width: auto !important;
+
+}
+
+
+.termos label {
+
+    margin: 0 !important;
+
+    font-size: 12px !important;
+
+    color: #667085 !important;
+
+}
+
+
+.btn-passageiro {
+
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 15px;
+
+    background: #2563eb;
+
+    color: white;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+}
+
+
+.login-passageiro {
+
+    text-align: center;
+
+    margin-top: 20px;
+
+    font-size: 13px;
+
+    color: #667085;
+
+}
+
+
+.login-passageiro a {
+
+    color: #2563eb;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+}
+
+
+/* =====================================================
 COMO FUNCIONA
-========================= */
+===================================================== */
 
 .como-funciona {
 
@@ -813,8 +1167,6 @@ COMO FUNCIONA
     text-align: center;
 
     padding: 30px;
-
-    position: relative;
 
 }
 
@@ -855,6 +1207,13 @@ COMO FUNCIONA
 }
 
 
+.passo h3 {
+
+    margin-bottom: 10px;
+
+}
+
+
 .passo p {
 
     color: #667085;
@@ -866,9 +1225,9 @@ COMO FUNCIONA
 }
 
 
-/* =========================
+/* =====================================================
 VANTAGENS
-========================= */
+===================================================== */
 
 .vantagens {
 
@@ -989,9 +1348,9 @@ VANTAGENS
 }
 
 
-/* =========================
-BANNER MOTORISTA
-========================= */
+/* =====================================================
+MOTORISTA
+===================================================== */
 
 .motorista-banner {
 
@@ -1056,9 +1415,9 @@ BANNER MOTORISTA
 }
 
 
-/* =========================
+/* =====================================================
 FOOTER
-========================= */
+===================================================== */
 
 footer {
 
@@ -1125,9 +1484,9 @@ footer p {
 }
 
 
-/* =========================
+/* =====================================================
 MODAIS
-========================= */
+===================================================== */
 
 .modal {
 
@@ -1303,7 +1662,29 @@ form button[type="submit"] {
 
     margin-top: 30px;
 
+    margin-bottom: 5px;
+
     color: #172554;
+
+}
+
+
+#formMotorista h3 i {
+
+    color: #2563eb;
+
+    margin-right: 5px;
+
+}
+
+
+.descricao-cadastro-plano {
+
+    font-size: 13px;
+
+    color: #667085;
+
+    margin: 10px 0 15px;
 
 }
 
@@ -1315,9 +1696,294 @@ form button[type="submit"] {
 }
 
 
-/* =========================
+/* =====================================================
+PLANOS
+===================================================== */
+
+.modal-planos {
+
+    max-width: 1100px;
+
+}
+
+
+.cabecalho-planos {
+
+    text-align: center;
+
+    margin-bottom: 40px;
+
+}
+
+
+.cabecalho-planos span {
+
+    color: #2563eb;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+}
+
+
+.cabecalho-planos h2 {
+
+    font-size: 32px;
+
+    margin: 12px 0;
+
+    color: #172554;
+
+}
+
+
+.cabecalho-planos p {
+
+    color: #667085;
+
+}
+
+
+.planos-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+
+}
+
+
+.plano-card {
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 16px;
+
+    padding: 30px;
+
+    position: relative;
+
+    background: white;
+
+    transition: 0.3s;
+
+}
+
+
+.plano-card:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+
+}
+
+
+.plano-destaque {
+
+    border: 2px solid #2563eb;
+
+}
+
+
+.mais-escolhido {
+
+    position: absolute;
+
+    top: -12px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 6px 15px;
+
+    border-radius: 20px;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+}
+
+
+.plano-titulo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+.plano-titulo i {
+
+    width: 42px;
+
+    height: 42px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    border-radius: 10px;
+
+}
+
+
+.plano-titulo h3 {
+
+    color: #172554;
+
+}
+
+
+.descricao-plano {
+
+    color: #667085;
+
+    font-size: 13px;
+
+    margin: 20px 0;
+
+    line-height: 1.6;
+
+}
+
+
+.preco-plano {
+
+    margin-bottom: 25px;
+
+}
+
+
+.preco-plano small {
+
+    display: block;
+
+    color: #98a2b3;
+
+}
+
+
+.preco-plano strong {
+
+    font-size: 32px;
+
+    color: #2563eb;
+
+}
+
+
+.preco-plano span {
+
+    color: #667085;
+
+    font-size: 12px;
+
+}
+
+
+.plano-card ul {
+
+    list-style: none;
+
+    margin-bottom: 25px;
+
+}
+
+
+.plano-card li {
+
+    font-size: 13px;
+
+    margin: 13px 0;
+
+    color: #475467;
+
+}
+
+
+.plano-card li i {
+
+    color: #22c55e;
+
+    margin-right: 7px;
+
+}
+
+
+.plano-card button {
+
+    width: 100%;
+
+    padding: 13px;
+
+    background: #2563eb;
+
+    color: white;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+}
+
+
+.info-planos {
+
+    margin-top: 30px;
+
+    padding: 18px;
+
+    background: #eff6ff;
+
+    color: #475467;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+
+}
+
+
+.info-planos i {
+
+    color: #2563eb;
+
+    margin-right: 6px;
+
+}
+
+
+.info-planos strong {
+
+    color: #172554;
+
+}
+
+
+/* =====================================================
 NOTIFICAÇÃO
-========================= */
+===================================================== */
 
 .notificacao {
 
@@ -1355,14 +2021,17 @@ NOTIFICAÇÃO
 }
 
 
-/* =========================
+/* =====================================================
 RESPONSIVO
-========================= */
+===================================================== */
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
+
 
     nav a {
+
         display: none;
+
     }
 
 
@@ -1387,9 +2056,9 @@ RESPONSIVO
     }
 
 
-    .passos {
+    .passageiro {
 
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
 
     }
 
@@ -1400,10 +2069,12 @@ RESPONSIVO
 
     }
 
+
 }
 
 
 @media (max-width: 700px) {
+
 
     header {
 
@@ -1454,9 +2125,55 @@ RESPONSIVO
     }
 
 
+    .rodape-viagem {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+
+    .botoes-viagem {
+
+        width: 100%;
+
+    }
+
+
+    .botoes-viagem button {
+
+        width: 100%;
+
+    }
+
+
     .passos {
 
         grid-template-columns: 1fr;
+
+    }
+
+
+    .passageiro {
+
+        padding: 70px 7%;
+
+        gap: 50px;
+
+    }
+
+
+    .passageiro-info h2 {
+
+        font-size: 32px;
+
+    }
+
+
+    .card-cadastro-passageiro {
+
+        padding: 25px;
 
     }
 
@@ -1502,5 +2219,13 @@ RESPONSIVO
         grid-template-columns: 1fr;
 
     }
+
+
+    .planos-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
 
 }
