@@ -1484,6 +1484,49 @@ footer p {
 }
 
 
+.aviso-painel-motorista {
+
+    display: flex;
+
+    gap: 12px;
+
+    align-items: flex-start;
+
+    background: #eff6ff;
+
+    border: 1px solid #bfdbfe;
+
+    border-radius: 10px;
+
+    padding: 16px;
+
+    margin-top: 25px;
+
+}
+
+
+.aviso-painel-motorista i {
+
+    color: #2563eb;
+
+    font-size: 18px;
+
+    margin-top: 2px;
+
+}
+
+
+.aviso-painel-motorista p {
+
+    font-size: 13px;
+
+    color: #1d3a66;
+
+    line-height: 1.5;
+
+}
+
+
 /* =====================================================
 MODAIS
 ===================================================== */
@@ -1981,6 +2024,36 @@ PLANOS
 }
 
 
+.plano-vazio {
+
+    grid-column: 1 / -1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+
+    gap: 12px;
+
+    padding: 40px 20px;
+
+    color: #667085;
+
+}
+
+
+.plano-vazio i {
+
+    font-size: 28px;
+
+    color: #2563eb;
+
+}
+
+
 /* =====================================================
 NOTIFICAÇÃO
 ===================================================== */
@@ -2227,5 +2300,964 @@ RESPONSIVO
 
     }
 
+
+}
+
+
+/* =====================================================
+PAINEL DO MOTORISTA
+===================================================== */
+
+
+.corpo-painel {
+
+    background: #f7f9fc;
+
+}
+
+
+.painel-wrapper {
+
+    display: flex;
+
+    min-height: 100vh;
+
+}
+
+
+
+/* =====================================================
+SIDEBAR
+===================================================== */
+
+.painel-sidebar {
+
+    width: 240px;
+
+    flex-shrink: 0;
+
+    background: #172554;
+
+    color: white;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 30px 20px;
+
+    position: sticky;
+
+    top: 0;
+
+    height: 100vh;
+
+}
+
+
+.painel-logo {
+
+    font-size: 20px;
+
+    font-weight: 800;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #60a5fa;
+
+}
+
+
+.painel-logo .destaque {
+
+    color: white;
+
+}
+
+
+.painel-logo-legenda {
+
+    font-size: 12px;
+
+    color: #93c5fd;
+
+    margin: 6px 0 35px;
+
+}
+
+
+.painel-nav {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    flex: 1;
+
+}
+
+
+.painel-nav-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px 14px;
+
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: #cbd5e1;
+
+    font-weight: 600;
+
+    font-size: 14px;
+
+    text-align: left;
+
+    width: 100%;
+
+}
+
+
+.painel-nav-item i {
+
+    width: 18px;
+
+}
+
+
+.painel-nav-item:hover {
+
+    background: rgba(255,255,255,0.06);
+
+    color: white;
+
+}
+
+
+.painel-nav-item.ativo {
+
+    background: #2563eb;
+
+    color: white;
+
+}
+
+
+.painel-sidebar-rodape {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid rgba(255,255,255,0.1);
+
+}
+
+
+.painel-sidebar-rodape a,
+.painel-sidebar-rodape button {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: #cbd5e1;
+
+    background: transparent;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    padding: 8px 6px;
+
+    text-align: left;
+
+}
+
+
+.painel-sidebar-rodape a:hover,
+.painel-sidebar-rodape button:hover {
+
+    color: white;
+
+}
+
+
+
+/* =====================================================
+CONTEÚDO
+===================================================== */
+
+.painel-conteudo {
+
+    flex: 1;
+
+    padding: 40px 5%;
+
+    max-width: 1100px;
+
+}
+
+
+.painel-topo {
+
+    margin-bottom: 30px;
+
+}
+
+
+.painel-topo h1 {
+
+    color: #172554;
+
+    font-size: 26px;
+
+    margin-bottom: 6px;
+
+}
+
+
+.painel-topo p {
+
+    color: #667085;
+
+    font-size: 14px;
+
+}
+
+
+
+/* =====================================================
+CARTÕES DE ESTATÍSTICA
+===================================================== */
+
+.stats-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+
+}
+
+
+.stat-card {
+
+    background: white;
+
+    border-radius: 14px;
+
+    padding: 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+
+}
+
+
+.stat-card i {
+
+    width: 46px;
+
+    height: 46px;
+
+    border-radius: 12px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 18px;
+
+    flex-shrink: 0;
+
+}
+
+
+.stat-card strong {
+
+    display: block;
+
+    font-size: 20px;
+
+    color: #172554;
+
+}
+
+
+.stat-card span {
+
+    font-size: 12px;
+
+    color: #667085;
+
+}
+
+
+
+/* =====================================================
+CARTÃO GENÉRICO DO PAINEL
+===================================================== */
+
+.painel-card {
+
+    background: white;
+
+    border-radius: 14px;
+
+    padding: 26px;
+
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+
+}
+
+
+.painel-card h2 {
+
+    font-size: 17px;
+
+    color: #172554;
+
+    margin-bottom: 16px;
+
+}
+
+
+.painel-obs {
+
+    margin-top: 16px;
+
+    font-size: 12px;
+
+    color: #667085;
+
+}
+
+
+.painel-obs i {
+
+    color: #2563eb;
+
+    margin-right: 6px;
+
+}
+
+
+
+/* =====================================================
+TABELA DE VIAGENS
+===================================================== */
+
+.tabela-viagens {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+}
+
+
+.linha-viagem {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 14px 16px;
+
+    background: #f7f9fc;
+
+    border-radius: 10px;
+
+    font-size: 13px;
+
+}
+
+
+.linha-viagem strong {
+
+    color: #172554;
+
+}
+
+
+.linha-viagem span {
+
+    color: #667085;
+
+}
+
+
+.viagens-vazio {
+
+    text-align: center;
+
+    padding: 30px 10px;
+
+    color: #667085;
+
+    font-size: 13px;
+
+}
+
+
+
+/* =====================================================
+ABA DE PLANOS
+===================================================== */
+
+.planos-cabecalho {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 20px;
+
+    margin-bottom: 24px;
+
+}
+
+
+.planos-cabecalho h2 {
+
+    color: #172554;
+
+    margin-bottom: 6px;
+
+}
+
+
+.planos-cabecalho p {
+
+    color: #667085;
+
+    font-size: 13px;
+
+    max-width: 520px;
+
+    line-height: 1.6;
+
+}
+
+
+.btn-novo-plano {
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 12px 18px;
+
+    border-radius: 10px;
+
+    font-weight: 600;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+}
+
+
+.btn-novo-plano:disabled {
+
+    background: #cbd5e1;
+
+    cursor: not-allowed;
+
+}
+
+
+.planos-grid-painel {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+
+}
+
+
+.plano-card-painel {
+
+    background: white;
+
+    border-radius: 14px;
+
+    padding: 22px;
+
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    position: relative;
+
+}
+
+
+.plano-card-painel .badge-ordem {
+
+    align-self: flex-start;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    color: #2563eb;
+
+    background: #eff6ff;
+
+    padding: 4px 10px;
+
+    border-radius: 999px;
+
+}
+
+
+.plano-card-painel h3 {
+
+    color: #172554;
+
+    font-size: 16px;
+
+}
+
+
+.plano-card-painel .valor {
+
+    font-size: 22px;
+
+    font-weight: 800;
+
+    color: #172554;
+
+}
+
+
+.plano-card-painel .valor span {
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+    color: #667085;
+
+}
+
+
+.plano-card-painel ul {
+
+    list-style: none;
+
+    font-size: 12px;
+
+    color: #475467;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+}
+
+
+.plano-card-painel ul li i {
+
+    color: #2563eb;
+
+    margin-right: 6px;
+
+}
+
+
+.plano-card-painel .plano-acoes {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: auto;
+
+    padding-top: 10px;
+
+}
+
+
+.plano-card-painel .plano-acoes button {
+
+    flex: 1;
+
+    padding: 9px;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+}
+
+
+.plano-card-painel .btn-editar-plano {
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+}
+
+
+.plano-card-painel .btn-remover-plano {
+
+    background: #fef2f2;
+
+    color: #dc2626;
+
+}
+
+
+.planos-vazio-painel {
+
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    padding: 40px 20px;
+
+    color: #667085;
+
+    font-size: 13px;
+
+}
+
+
+
+/* =====================================================
+FORMULÁRIO DE PLANO
+===================================================== */
+
+.form-plano-card {
+
+    background: white;
+
+    border-radius: 14px;
+
+    padding: 26px;
+
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+
+    max-width: 520px;
+
+}
+
+
+.form-plano-card h3 {
+
+    color: #172554;
+
+    margin-bottom: 8px;
+
+}
+
+
+.form-plano-card label {
+
+    display: block;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    margin: 15px 0 7px;
+
+}
+
+
+.form-plano-card input {
+
+    width: 100%;
+
+}
+
+
+.form-plano-linha {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 16px;
+
+}
+
+
+.vantagens-input {
+
+    display: flex;
+
+    gap: 10px;
+
+}
+
+
+.vantagens-input input {
+
+    flex: 1;
+
+}
+
+
+.vantagens-input button {
+
+    background: #172554;
+
+    color: white;
+
+    padding: 0 16px;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+
+}
+
+
+.lista-vantagens-form {
+
+    list-style: none;
+
+    margin-top: 12px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+
+.lista-vantagens-form li {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: #f7f9fc;
+
+    padding: 8px 12px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+
+    color: #1d2939;
+
+}
+
+
+.lista-vantagens-form li button {
+
+    background: transparent;
+
+    color: #dc2626;
+
+    font-size: 14px;
+
+}
+
+
+.form-plano-botoes {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 22px;
+
+}
+
+
+.btn-salvar-plano {
+
+    flex: 1;
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 13px;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+}
+
+
+.btn-cancelar-plano {
+
+    background: #f2f4f7;
+
+    color: #475467;
+
+    padding: 13px 18px;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+}
+
+
+
+/* =====================================================
+RESPONSIVO
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .painel-wrapper {
+
+        flex-direction: column;
+
+    }
+
+
+    .painel-sidebar {
+
+        width: 100%;
+
+        height: auto;
+
+        position: relative;
+
+        flex-direction: row;
+
+        align-items: center;
+
+        flex-wrap: wrap;
+
+        gap: 16px;
+
+    }
+
+
+    .painel-nav {
+
+        flex-direction: row;
+
+        flex: unset;
+
+    }
+
+
+    .painel-sidebar-rodape {
+
+        flex-direction: row;
+
+        border-top: none;
+
+        padding-top: 0;
+
+        margin-left: auto;
+
+    }
+
+
+    .painel-logo-legenda {
+
+        display: none;
+
+    }
+
+
+    .stats-grid,
+    .planos-grid-painel {
+
+        grid-template-columns: 1fr 1fr;
+
+    }
+
+
+    .form-plano-linha {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+@media (max-width: 560px) {
+
+    .stats-grid,
+    .planos-grid-painel {
+
+        grid-template-columns: 1fr;
+
+    }
 
 }
