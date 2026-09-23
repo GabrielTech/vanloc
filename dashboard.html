@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Painel do Motorista | VANLOC</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+</head>
+
+
+<body class="corpo-painel">
+
+
+<div class="painel-wrapper">
+
+
+    <!-- =====================================================
+    MENU LATERAL
+    ===================================================== -->
+
+    <aside class="painel-sidebar">
+
+        <div class="painel-logo">
+
+            <i class="fa-solid fa-van-shuttle"></i>
+
+            <span>VAN<span class="destaque">LOC</span></span>
+
+        </div>
+
+
+        <p class="painel-logo-legenda">Painel do Motorista</p>
+
+
+        <nav class="painel-nav">
+
+            <button
+                class="painel-nav-item ativo"
+                data-aba="visaoGeral"
+                onclick="mostrarAba('visaoGeral')"
+            >
+
+                <i class="fa-solid fa-chart-line"></i>
+                Visão geral
+
+            </button>
+
+
+            <button
+                class="painel-nav-item"
+                data-aba="planos"
+                onclick="mostrarAba('planos')"
+            >
+
+                <i class="fa-solid fa-tags"></i>
+                Meus Planos
+
+            </button>
+
+        </nav>
+
+
+        <div class="painel-sidebar-rodape">
+
+            <a href="index.html">
+
+                <i class="fa-solid fa-arrow-left"></i>
+                Voltar ao site
+
+            </a>
+
+
+            <button onclick="sairPainel()">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Sair
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+    CONTEÚDO PRINCIPAL
+    ===================================================== -->
+
+    <main class="painel-conteudo">
+
+
+        <header class="painel-topo">
+
+            <div>
+
+                <h1 id="saudacaoMotorista">Olá, motorista!</h1>
+
+                <p>Aqui está um resumo da sua atividade na VANLOC.</p>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+        ABA: VISÃO GERAL
+        ================================================= -->
+
+        <section id="abaVisaoGeral" class="painel-aba">
+
+
+            <div class="stats-grid">
+
+
+                <div class="stat-card">
+
+                    <i class="fa-solid fa-route"></i>
+
+                    <div>
+
+                        <strong id="statViagens">0</strong>
+                        <span>Viagens cadastradas</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <i class="fa-solid fa-sack-dollar"></i>
+
+                    <div>
+
+                        <strong id="statReceita">R$ 0,00</strong>
+                        <span>Receita potencial</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <i class="fa-solid fa-tags"></i>
+
+                    <div>
+
+                        <strong id="statPlanos">0/3</strong>
+                        <span>Planos ativos</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <i class="fa-solid fa-coins"></i>
+
+                    <div>
+
+                        <strong id="statTicketMedio">R$ 0,00</strong>
+                        <span>Ticket médio dos planos</span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="painel-card">
+
+                <h2>Minhas viagens cadastradas</h2>
+
+                <div id="listaViagensMotorista" class="tabela-viagens">
+
+                    <!-- preenchido via JS -->
+
+                </div>
+
+                <p class="painel-obs">
+
+                    <i class="fa-solid fa-circle-info"></i>
+                    Os números acima são calculados a partir das
+                    viagens que você cadastrou na plataforma.
+
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+        ABA: PLANOS
+        ================================================= -->
+
+        <section id="abaPlanos" class="painel-aba" style="display:none">
+
+
+            <div class="planos-cabecalho">
+
+                <div>
+
+                    <h2>Meus Planos</h2>
+
+                    <p>
+
+                        Crie até 3 planos mensais para seus
+                        passageiros. Valor mínimo: R$ 20,00 por
+                        viagem. Eles aparecem, do mais caro ao
+                        mais barato, para os clientes que
+                        consultarem seus planos no site.
+
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="btnNovoPlano"
+                    class="btn-novo-plano"
+                    onclick="abrirFormPlano()"
+                >
+
+                    <i class="fa-solid fa-plus"></i>
+                    Criar novo plano
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="listaPlanosMotorista"
+                class="planos-grid-painel"
+            >
+
+                <!-- preenchido via JS -->
+
+            </div>
+
+
+
+            <!-- =============================================
+            FORMULÁRIO DE PLANO (criar / editar)
+            ============================================= -->
+
+            <div
+                id="formPlanoContainer"
+                class="form-plano-card"
+                style="display:none"
+            >
+
+                <h3 id="formPlanoTitulo">Novo plano</h3>
+
+
+                <label>Nome do plano</label>
+
+                <input
+                    type="text"
+                    id="inputNomePlano"
+                    placeholder="Ex: Plano Mensal"
+                >
+
+
+                <div class="form-plano-linha">
+
+                    <div>
+
+                        <label>Valor por viagem (mín. R$ 20,00)</label>
+
+                        <input
+                            type="number"
+                            id="inputValorPlano"
+                            min="20"
+                            step="0.01"
+                            placeholder="Ex: 25.00"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Viagens incluídas por mês</label>
+
+                        <input
+                            type="number"
+                            id="inputQuantidadePlano"
+                            min="1"
+                            placeholder="Ex: 10"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <label>Vantagens do plano</label>
+
+                <div class="vantagens-input">
+
+                    <input
+                        type="text"
+                        id="inputVantagem"
+                        placeholder="Ex: Prioridade na reserva"
+                    >
+
+                    <button
+                        type="button"
+                        onclick="adicionarVantagem()"
+                    >
+                        Adicionar
+                    </button>
+
+                </div>
+
+                <ul id="listaVantagens" class="lista-vantagens-form"></ul>
+
+
+                <div class="form-plano-botoes">
+
+                    <button
+                        class="btn-salvar-plano"
+                        onclick="salvarPlano()"
+                    >
+                        Salvar plano
+                    </button>
+
+                    <button
+                        class="btn-cancelar-plano"
+                        onclick="fecharFormPlano()"
+                    >
+                        Cancelar
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+</div>
+
+
+
+<!-- =====================================================
+NOTIFICAÇÃO
+===================================================== -->
+
+<div id="notificacao" class="notificacao">
+
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="mensagemNotificacao"></span>
+
+</div>
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
