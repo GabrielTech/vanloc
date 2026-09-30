@@ -8,6 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>VANLOC | Transportes e Locações</title>
+    <meta name="description" content="Encontre vans para o seu destino, compare horários e valores, consulte planos mensais e reserve sua vaga na VANLOC.">
+    <meta name="theme-color" content="#2563eb">
+    <meta property="og:title" content="VANLOC | Transportes e Locações">
+    <meta property="og:description" content="Vans, horários e planos mensais de motoristas em um só lugar.">
+    <meta property="og:type" content="website">
 
     <link rel="stylesheet" href="style.css">
 
@@ -26,7 +31,7 @@
 HEADER
 ===================================================== -->
 
-<header>
+<header id="topo">
 
     <div class="logo">
 
@@ -37,7 +42,7 @@ HEADER
     </div>
 
 
-    <nav>
+    <nav id="menuPrincipal" aria-label="Menu principal">
 
         <a href="#inicio">Início</a>
 
@@ -74,6 +79,11 @@ HEADER
         </button>
 
     </nav>
+
+    <button class="menu-toggle" id="menuToggle" type="button"
+        aria-label="Abrir menu" aria-expanded="false" aria-controls="menuPrincipal">
+        <i class="fa-solid fa-bars"></i>
+    </button>
 
 </header>
 
@@ -342,7 +352,7 @@ VIAGENS
             <div class="imagem-van">
 
 
-                <img
+                <img loading="lazy" decoding="async"
                     src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80"
                     alt="Van de transporte"
                 >
@@ -518,7 +528,7 @@ VIAGENS
             <div class="imagem-van">
 
 
-                <img
+                <img loading="lazy" decoding="async"
                     src="https://images.unsplash.com/photo-1516939884455-1445c8652f83?auto=format&fit=crop&w=800&q=80"
                     alt="Van de transporte"
                 >
@@ -694,7 +704,7 @@ VIAGENS
             <div class="imagem-van">
 
 
-                <img
+                <img loading="lazy" decoding="async"
                     src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=800&q=80"
                     alt="Van de transporte"
                 >

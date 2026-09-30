@@ -2495,3 +2495,112 @@ function mostrarNotificacaoPainel(mensagem) {
     }, 4000);
 
 }
+
+
+/* =====================================================
+MELHORIAS V2
+===================================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* ---------- Menu mobile ---------- */
+
+    const topo = document.getElementById("topo");
+    const botaoMenu = document.getElementById("menuToggle");
+
+    function alternarMenu(abrir) {
+        if (!topo || !botaoMenu) return;
+        topo.classList.toggle("menu-aberto", abrir);
+        botaoMenu.setAttribute("aria-expanded", String(abrir));
+        botaoMenu.setAttribute("aria-label", abrir ? "Fechar menu" : "Abrir menu");
+        botaoMenu.innerHTML = abrir
+            ? '<i class="fa-solid fa-xmark"></i>'
+            : '<i class="fa-solid fa-bars"></i>';
+    }
+
+    if (botaoMenu) {
+        botaoMenu.addEventListener("click", function () {
+            alternarMenu(!topo.classList.contains("menu-aberto"));
+        });
+
+        document.querySelectorAll("#menuPrincipal a, #menuPrincipal button")
+            .forEach(function (item) {
+                item.addEventListener("click", function () { alternarMenu(false); });
+            });
+    }
+
+    /* ---------- Modais: acessibilidade, ESC e trava de rolagem ---------- */
+
+    const modais = document.querySelectorAll(".modal");
+
+    function atualizarModais() {
+        const algumAberto = Array.from(modais).some(function (m) {
+            return m.style.display === "block";
+        });
+        document.body.classList.toggle("modal-aberto", algumAberto);
+    }
+
+    modais.forEach(function (modal) {
+        modal.setAttribute("role", "dialog");
+        modal.setAttribute("aria-modal", "true");
+
+        new MutationObserver(function () {
+            atualizarModais();
+            if (modal.style.display === "block") {
+                const campo = modal.querySelector("input:not([type=hidden]), button:not(.fechar)");
+                if (campo) setTimeout(function () { campo.focus(); }, 60);
+            }
+        }).observe(modal, { attributes: true, attributeFilter: ["style"] });
+    });
+
+    document.addEventListener("keydown", function (e) {
+        if (e.key !== "Escape") return;
+        modais.forEach(function (m) { m.style.display = "none"; });
+        alternarMenu(false);
+    });
+
+    /* ---------- Máscaras ---------- */
+
+    function aplicarMascara(id, formatar) {
+        const campo = document.getElementById(id);
+        if (!campo) return;
+        campo.addEventListener("input", function () {
+            campo.value = formatar(campo.value);
+        });
+    }
+
+    function mascaraTelefone(valor) {
+        const n = valor.replace(/\D/g, "").slice(0, 11);
+        if (n.length <= 2) return n ? "(" + n : "";
+        if (n.length <= 6) return "(" + n.slice(0, 2) + ") " + n.slice(2);
+        if (n.length <= 10) return "(" + n.slice(0, 2) + ") " + n.slice(2, 6) + "-" + n.slice(6);
+        return "(" + n.slice(0, 2) + ") " + n.slice(2, 7) + "-" + n.slice(7);
+    }
+
+    function mascaraCpf(valor) {
+        const n = valor.replace(/\D/g, "").slice(0, 11);
+        return n
+            .replace(/(\d{3})(\d)/, "$1.$2")
+            .replace(/(\d{3})(\d)/, "$1.$2")
+            .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+    }
+
+    aplicarMascara("passageiroTelefone", mascaraTelefone);
+    aplicarMascara("telefoneMotorista", mascaraTelefone);
+    aplicarMascara("cpfMotorista", mascaraCpf);
+    aplicarMascara("placaVan", function (v) {
+        return v.toUpperCase().replace(/[^A-Z0-9-]/g, "").slice(0, 8);
+    });
+
+    /* ---------- Datas: não permitir dias passados ---------- */
+
+    const hoje = new Date();
+    const iso = hoje.getFullYear() + "-" +
+        String(hoje.getMonth() + 1).padStart(2, "0") + "-" +
+        String(hoje.getDate()).padStart(2, "0");
+
+    ["dataViagem", "buscaData"].forEach(function (id) {
+        const campo = document.getElementById(id);
+        if (campo) campo.min = iso;
+    });
+});
