@@ -2604,3 +2604,51 @@ document.addEventListener("DOMContentLoaded", function () {
         if (campo) campo.min = iso;
     });
 });
+
+
+/* =====================================================
+EFEITO 3D DA VAN (card do topo da página principal)
+=====================================================
+A van inclina levemente acompanhando o mouse (ou o dedo)
+sobre o card. Só roda se o card existir na página, então
+o mesmo arquivo continua funcionando no dashboard.html.
+===================================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const card = document.getElementById("heroCard");
+    const inclinar = document.getElementById("vanTilt");
+
+    if (!card || !inclinar) return;
+
+    // Respeita quem prefere menos movimento
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const MAX_X = 9;   // inclinação vertical máxima (graus)
+    const MAX_Y = 14;  // inclinação horizontal máxima (graus)
+
+    let quadro = null;
+
+    function aplicar(rx, ry) {
+        if (quadro) cancelAnimationFrame(quadro);
+
+        quadro = requestAnimationFrame(function () {
+            inclinar.style.setProperty("--rx", rx + "deg");
+            inclinar.style.setProperty("--ry", ry + "deg");
+        });
+    }
+
+    card.addEventListener("pointermove", function (evento) {
+        const caixa = card.getBoundingClientRect();
+
+        // Posição entre -0.5 e 0.5 dentro do card
+        const x = (evento.clientX - caixa.left) / caixa.width - 0.5;
+        const y = (evento.clientY - caixa.top) / caixa.height - 0.5;
+
+        aplicar((-y * MAX_X * 2).toFixed(2), (x * MAX_Y * 2).toFixed(2));
+    });
+
+    card.addEventListener("pointerleave", function () {
+        aplicar(0, 0);
+    });
+});

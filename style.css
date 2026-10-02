@@ -302,19 +302,31 @@ HERO
 
 .status-online {
 
+    position: absolute;
+
+    left: 0;
+
+    bottom: 46px;
+
     display: inline-flex;
 
     gap: 8px;
 
     align-items: center;
 
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.14);
+
+    backdrop-filter: blur(6px);
+
+    -webkit-backdrop-filter: blur(6px);
 
     padding: 8px 14px;
 
     border-radius: 30px;
 
     font-size: 12px;
+
+    transform: translateZ(84px);
 
 }
 
@@ -332,13 +344,137 @@ HERO
 }
 
 
-.van-icon {
+/* ---------- Van em 3D ---------- */
 
-    font-size: 130px;
+.van-stage {
 
-    margin: 35px 0;
+    position: relative;
 
-    color: #60a5fa;
+    height: 300px;
+
+    margin: 6px 0 26px;
+
+    perspective: 900px;
+
+}
+
+
+.van-tilt {
+
+    position: absolute;
+
+    inset: 0;
+
+    transform-style: preserve-3d;
+
+    transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+
+    transition: transform 0.18s ease-out;
+
+    will-change: transform;
+
+}
+
+
+.van-glow {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 46%;
+
+    width: 80%;
+
+    height: 72%;
+
+    transform: translate(-50%, -50%) translateZ(-30px);
+
+    background: radial-gradient(
+        closest-side,
+        rgba(96,165,250,0.42),
+        rgba(96,165,250,0) 72%
+    );
+
+    pointer-events: none;
+
+}
+
+
+.van-floor {
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 14px;
+
+    width: 70%;
+
+    height: 24px;
+
+    transform: translateX(-50%);
+
+    background: radial-gradient(
+        closest-side,
+        rgba(0,0,0,0.55),
+        rgba(0,0,0,0) 100%
+    );
+
+    filter: blur(4px);
+
+    pointer-events: none;
+
+}
+
+
+.van-float {
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: -25px;
+
+    width: 185%;
+
+    transform-style: preserve-3d;
+
+    transform: translateX(-50%) translateZ(46px);
+
+    animation: vanFlutuar 5s ease-in-out infinite;
+
+}
+
+
+.van-img {
+
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+
+    user-select: none;
+
+    -webkit-user-drag: none;
+
+    filter:
+        drop-shadow(0 16px 14px rgba(0,0,0,0.45))
+        drop-shadow(0 0 22px rgba(96,165,250,0.22));
+
+}
+
+
+@keyframes vanFlutuar {
+
+    0%, 100% {
+        transform: translateX(-50%) translateZ(46px) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateZ(46px) translateY(-7px);
+    }
 
 }
 
@@ -3360,6 +3496,36 @@ body.modal-aberto {
         justify-content: center;
     }
 }
+
+/* Van em 3D no celular */
+
+@media (max-width: 480px) {
+
+    .van-stage {
+        height: 190px;
+    }
+
+    .status-online {
+        font-size: 11px;
+        padding: 6px 11px;
+        bottom: 34px;
+    }
+}
+
+
+/* Sem inclinação para quem prefere menos movimento */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .van-float {
+        animation: none;
+    }
+
+    .van-tilt {
+        transform: none !important;
+    }
+}
+
 
 @media (prefers-reduced-motion: reduce) {
 
