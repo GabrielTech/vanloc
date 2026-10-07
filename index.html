@@ -69,6 +69,7 @@ HEADER
 
         <button
             class="btn-login"
+            id="botaoConta"
             onclick="abrirLogin()"
         >
 
@@ -1135,6 +1136,23 @@ PASSAGEIRO
 
             <label>
 
+                Estado (UF)
+
+            </label>
+
+
+            <input
+                type="text"
+                id="passageiroEstado"
+                placeholder="Ex.: PE"
+                maxlength="2"
+                required
+            >
+
+
+
+            <label>
+
                 Crie uma senha
 
             </label>
@@ -1621,7 +1639,7 @@ MODAL LOGIN
 
             <p>
 
-                Acesse sua conta
+                Acesse sua conta de passageiro
 
             </p>
 
@@ -1638,7 +1656,9 @@ MODAL LOGIN
 
             <input
                 type="email"
+                id="emailLogin"
                 placeholder="Digite seu email"
+                autocomplete="email"
                 required
             >
 
@@ -1649,7 +1669,9 @@ MODAL LOGIN
 
             <input
                 type="password"
+                id="senhaLogin"
                 placeholder="Digite sua senha"
+                autocomplete="current-password"
                 required
             >
 

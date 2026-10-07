@@ -133,6 +133,143 @@ function vlEncerrarSessaoMotorista() {
 
 
 /* =====================================================
+PASSAGEIRO: DADOS E SESSÃO
+===================================================== */
+
+
+VANLOC_CHAVES.PASSAGEIROS = "vanloc_passageiros";
+VANLOC_CHAVES.SESSAO_PASSAGEIRO = "vanloc_sessao_passageiro";
+
+
+function vlGetPassageiros() {
+
+    try {
+
+        return JSON.parse(
+            localStorage.getItem(VANLOC_CHAVES.PASSAGEIROS)
+        ) || {};
+
+    } catch (erro) {
+
+        return {};
+
+    }
+
+}
+
+
+function vlSalvarPassageiros(passageiros) {
+
+    localStorage.setItem(
+        VANLOC_CHAVES.PASSAGEIROS,
+        JSON.stringify(passageiros)
+    );
+
+}
+
+
+function vlGetPassageiro(email) {
+
+    const passageiros = vlGetPassageiros();
+
+    return passageiros[vlNormalizarEmail(email)] || null;
+
+}
+
+
+function vlSalvarPassageiro(passageiro) {
+
+    const passageiros = vlGetPassageiros();
+    const email = vlNormalizarEmail(passageiro.email);
+
+    passageiros[email] = {
+        ...(passageiros[email] || {}),
+        ...passageiro,
+        email: email
+    };
+
+    vlSalvarPassageiros(passageiros);
+
+    return passageiros[email];
+
+}
+
+
+function vlGetSessaoPassageiro() {
+
+    return localStorage.getItem(
+        VANLOC_CHAVES.SESSAO_PASSAGEIRO
+    );
+
+}
+
+
+function vlSalvarSessaoPassageiro(email) {
+
+    localStorage.setItem(
+        VANLOC_CHAVES.SESSAO_PASSAGEIRO,
+        vlNormalizarEmail(email)
+    );
+
+}
+
+
+function vlEncerrarSessaoPassageiro() {
+
+    localStorage.removeItem(
+        VANLOC_CHAVES.SESSAO_PASSAGEIRO
+    );
+
+}
+
+
+function atualizarHeaderPassageiro() {
+
+    const botao = document.getElementById("botaoConta");
+
+    if (!botao) {
+        return;
+    }
+
+    const email = vlGetSessaoPassageiro();
+    const passageiro = email ? vlGetPassageiro(email) : null;
+
+    if (!passageiro) {
+        botao.classList.remove("logado-passageiro");
+        botao.innerHTML =
+            '<i class="fa-solid fa-user"></i> Entrar';
+        botao.onclick = abrirLogin;
+        return;
+    }
+
+    const primeiroNome =
+        (passageiro.nome || "Usuário").split(" ")[0];
+
+    const foto = passageiro.foto
+        ? `<img class="avatar-header" src="${passageiro.foto}" alt="Foto de ${escapeHtml(primeiroNome)}">`
+        : '<span class="avatar-header avatar-inicial">' +
+          escapeHtml(primeiroNome.charAt(0).toUpperCase()) +
+          '</span>';
+
+    botao.classList.add("logado-passageiro");
+    botao.innerHTML =
+        foto + '<span>' + escapeHtml(primeiroNome) + '</span>' +
+        '<i class="fa-solid fa-chevron-down"></i>';
+
+    botao.onclick = function() {
+        window.location.href = "dashboard-passageiro.html";
+    };
+
+}
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    atualizarHeaderPassageiro();
+});
+
+
+
+/* =====================================================
 MOTORISTA: BUSCAR / SALVAR
 ===================================================== */
 
@@ -773,23 +910,60 @@ LOGIN
 ===================================================== */
 
 
+/* =====================================================
+LOGIN + SESSÃO DO PASSAGEIRO
+===================================================== */
+
+
 const vlFormLogin =
     document.getElementById("formLogin");
 
 if (vlFormLogin) {
 
-vlFormLogin
-.addEventListener("submit", function(event) {
+vlFormLogin.addEventListener("submit", function(event) {
 
     event.preventDefault();
 
+    const email = vlNormalizarEmail(
+        document.getElementById("emailLogin").value
+    );
+
+    const senha =
+        document.getElementById("senhaLogin").value;
+
+    const passageiro = vlGetPassageiro(email);
+
+    if (!passageiro) {
+
+        mostrarNotificacao(
+            "Conta não encontrada. Cadastre-se como passageiro primeiro."
+        );
+
+        return;
+
+    }
+
+    if (passageiro.senha !== senha) {
+
+        mostrarNotificacao("Senha incorreta.");
+
+        return;
+
+    }
+
+    vlSalvarSessaoPassageiro(email);
 
     fecharLogin();
 
+    atualizarHeaderPassageiro();
 
-    mostrarNotificacao(
-        "Login realizado com sucesso!"
-    );
+    mostrarNotificacao("Login realizado com sucesso! Redirecionando...");
+
+    setTimeout(function() {
+
+        window.location.href = "dashboard-passageiro.html";
+
+    }, 700);
 
 });
 
@@ -807,82 +981,89 @@ const vlFormCadastroPassageiro =
 
 if (vlFormCadastroPassageiro) {
 
-vlFormCadastroPassageiro
-.addEventListener("submit", function(event) {
+vlFormCadastroPassageiro.addEventListener("submit", function(event) {
 
     event.preventDefault();
 
-
     const nome =
-        document
-        .getElementById("passageiroNome")
-        .value;
+        document.getElementById("passageiroNome").value.trim();
 
+    const email = vlNormalizarEmail(
+        document.getElementById("passageiroEmail").value
+    );
+
+    const telefone =
+        document.getElementById("passageiroTelefone").value.trim();
+
+    const cidade =
+        document.getElementById("passageiroCidade").value.trim();
+
+    const estado =
+        document.getElementById("passageiroEstado")?.value
+        .trim().toUpperCase() || "";
 
     const senha =
-        document
-        .getElementById("passageiroSenha")
-        .value;
-
+        document.getElementById("passageiroSenha").value;
 
     const confirmarSenha =
-        document
-        .getElementById("passageiroConfirmarSenha")
-        .value;
-
+        document.getElementById("passageiroConfirmarSenha").value;
 
     if (senha !== confirmarSenha) {
 
-        mostrarNotificacao(
-            "As senhas não coincidem!"
-        );
+        mostrarNotificacao("As senhas não coincidem!");
 
         return;
 
     }
 
+    if (senha.length < 6) {
+
+        mostrarNotificacao("A senha precisa ter pelo menos 6 caracteres.");
+
+        return;
+
+    }
+
+    if (vlGetPassageiro(email)) {
+
+        mostrarNotificacao("Já existe uma conta com este email.");
+
+        return;
+
+    }
 
     const passageiro = {
 
         nome: nome,
-
-        email:
-            document
-            .getElementById("passageiroEmail")
-            .value,
-
-        telefone:
-            document
-            .getElementById("passageiroTelefone")
-            .value,
-
-        cidade:
-            document
-            .getElementById("passageiroCidade")
-            .value
+        email: email,
+        telefone: telefone,
+        cidade: cidade,
+        estado: estado,
+        foto: "",
+        bio: "",
+        criadoEm: Date.now(),
+        senha: senha
 
     };
 
-
-    console.log(
-        "Passageiro cadastrado:",
-        passageiro
-    );
-
+    vlSalvarPassageiro(passageiro);
+    vlSalvarSessaoPassageiro(email);
 
     mostrarNotificacao(
-        "Cadastro realizado com sucesso! Bem-vindo à VANLOC, " +
-        nome +
-        "!"
+        "Cadastro realizado com sucesso! Abrindo sua conta..."
     );
 
-
     this.reset();
+
+    setTimeout(function() {
+
+        window.location.href = "dashboard-passageiro.html";
+
+    }, 700);
 
 });
 
 }
-
 
 
 /* =====================================================

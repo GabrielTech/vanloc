@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Minha Conta | VANLOC</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="dashboard-passageiro.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body class="dashboard-passageiro">
+<div class="dp-shell">
+    <aside class="dp-sidebar">
+        <div class="dp-logo"><i class="fa-solid fa-van-shuttle"></i> VAN<span>LOC</span></div>
+        <div class="dp-caption">Área do Passageiro</div>
+        <nav class="dp-nav">
+            <button class="ativo" data-aba="inicio" onclick="dpMostrarAba('inicio')"><i class="fa-solid fa-house"></i> Visão geral</button>
+            <button data-aba="perfil" onclick="dpMostrarAba('perfil')"><i class="fa-solid fa-user"></i> Meu perfil</button>
+            <button data-aba="reservas" onclick="dpMostrarAba('reservas')"><i class="fa-solid fa-ticket"></i> Minhas reservas</button>
+            <button data-aba="favoritos" onclick="dpMostrarAba('favoritos')"><i class="fa-solid fa-heart"></i> Favoritos</button>
+            <button data-aba="notificacoes" onclick="dpMostrarAba('notificacoes')"><i class="fa-solid fa-bell"></i> Notificações</button>
+        </nav>
+        <div class="dp-side-footer">
+            <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Voltar ao site</a>
+            <button onclick="dpSair()"><i class="fa-solid fa-right-from-bracket"></i> Sair</button>
+        </div>
+    </aside>
+
+    <main class="dp-main">
+        <header class="dp-topbar">
+            <div>
+                <strong id="dpTituloTopo">Minha conta</strong>
+                <div style="color:#667085;font-size:13px;margin-top:3px">Gerencie seu perfil e suas viagens.</div>
+            </div>
+            <div class="dp-user-mini" id="dpUserMini"></div>
+        </header>
+
+        <div class="dp-content">
+            <section id="dpAbaInicio" class="dp-aba ativa">
+                <h1 id="dpSaudacao">Olá!</h1>
+                <p class="dp-subtitle">Confira sua conta e encontre sua próxima viagem.</p>
+                <div class="dp-stats">
+                    <div class="dp-stat"><i class="fa-solid fa-ticket"></i><div><strong id="dpStatReservas">0</strong><span>Reservas</span></div></div>
+                    <div class="dp-stat"><i class="fa-solid fa-heart"></i><div><strong id="dpStatFavoritos">0</strong><span>Favoritos</span></div></div>
+                    <div class="dp-stat"><i class="fa-solid fa-location-dot"></i><div><strong id="dpStatLocalidade">—</strong><span>Localidade</span></div></div>
+                </div>
+                <div class="dp-card">
+                    <h2>Seu perfil</h2>
+                    <div id="dpResumoPerfil"></div>
+                </div>
+                <div class="dp-card">
+                    <h2>Próximas viagens</h2>
+                    <div id="dpProximasViagens" class="dp-empty">Você ainda não possui reservas registradas.</div>
+                </div>
+            </section>
+
+            <section id="dpAbaPerfil" class="dp-aba">
+                <h1>Meu perfil</h1>
+                <p class="dp-subtitle">Atualize sua foto, seus dados e sua localidade.</p>
+                <form id="dpFormPerfil" class="dp-card">
+                    <div class="dp-profile-grid">
+                        <div class="dp-photo-box">
+                            <div id="dpFotoPreview" class="dp-photo-preview"></div>
+                            <label class="dp-photo-label"><i class="fa-solid fa-camera"></i> Alterar foto<input id="dpFotoInput" type="file" accept="image/*"></label>
+                            <p style="font-size:12px;color:#667085;margin-top:10px">A imagem fica salva no seu navegador neste MVP.</p>
+                        </div>
+                        <div class="dp-form-grid">
+                            <div class="dp-field"><label for="dpNome">Nome completo</label><input id="dpNome" required></div>
+                            <div class="dp-field"><label for="dpEmail">Email</label><input id="dpEmail" type="email" readonly></div>
+                            <div class="dp-field"><label for="dpTelefone">Telefone / WhatsApp</label><input id="dpTelefone"></div>
+                            <div class="dp-field"><label for="dpCidade">Cidade</label><input id="dpCidade"></div>
+                            <div class="dp-field"><label for="dpEstado">Estado (UF)</label><input id="dpEstado" maxlength="2"></div>
+                            <div class="dp-field full"><label for="dpBio">Sobre você</label><textarea id="dpBio" placeholder="Conte um pouco sobre você (opcional)"></textarea></div>
+                        </div>
+                    </div>
+                    <div class="dp-actions"><button type="button" class="dp-btn secondary" onclick="dpRemoverFoto()">Remover foto</button><button class="dp-btn" type="submit"><i class="fa-solid fa-floppy-disk"></i> Salvar alterações</button></div>
+                </form>
+            </section>
+
+            <section id="dpAbaReservas" class="dp-aba">
+                <h1>Minhas reservas</h1>
+                <p class="dp-subtitle">Acompanhe as viagens que você reservou.</p>
+                <div class="dp-card" id="dpListaReservas"></div>
+            </section>
+
+            <section id="dpAbaFavoritos" class="dp-aba">
+                <h1>Favoritos</h1>
+                <p class="dp-subtitle">Motoristas e rotas que você pretende acompanhar.</p>
+                <div class="dp-card"><div class="dp-empty">Nenhum motorista ou viagem favoritado ainda.</div></div>
+            </section>
+
+            <section id="dpAbaNotificacoes" class="dp-aba">
+                <h1>Notificações</h1>
+                <p class="dp-subtitle">Avisos importantes da sua conta.</p>
+                <div class="dp-card"><div class="dp-empty">Você não possui novas notificações.</div></div>
+            </section>
+        </div>
+    </main>
+</div>
+<script src="script.js"></script>
+<script src="dashboard-passageiro.js"></script>
+</body>
+</html>
