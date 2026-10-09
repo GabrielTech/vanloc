@@ -3756,3 +3756,13 @@ MELHORIAS: HERO RESPONSIVO E IMAGENS
         width: 170%;
     }
 }
+
+
+/* Dashboard do passageiro: tamanho padrão do avatar (foto ou inicial) */
+.dp-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
