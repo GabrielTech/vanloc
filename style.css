@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+/* Fonte Inter carregada via <link> no HTML (mais rápido que @import) */
 
 
 * {
@@ -3696,4 +3696,63 @@ DASHBOARD DO PASSAGEIRO
     .dp-profile-grid, .dp-form-grid { grid-template-columns: 1fr; }
     .dp-field.full { grid-column: auto; }
     .dp-trip { grid-template-columns: 1fr; }
+}
+
+
+/* =====================================================
+MELHORIAS: HERO RESPONSIVO E IMAGENS
+===================================================== */
+
+/* A van pode "sair" do card, mas nunca gera rolagem lateral */
+.hero {
+    overflow-x: clip;
+}
+
+.van-img {
+    aspect-ratio: 1100 / 644;
+}
+
+/* Foto externa indisponível: mostra a van local */
+.imagem-van img.img-fallback {
+    object-fit: contain;
+    padding: 18px;
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+}
+
+@media (max-width: 700px) {
+
+    .van-float {
+        width: 122%;
+    }
+
+    .van-stage {
+        height: 250px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .van-float {
+        width: 118%;
+    }
+
+    .van-stage {
+        height: 220px;
+    }
+}
+
+
+/* Van proporcional em telas médias: não encosta no título nem sai da tela */
+@media (min-width: 1101px) and (max-width: 1300px) {
+
+    .van-float {
+        width: 150%;
+    }
+}
+
+@media (min-width: 1301px) and (max-width: 1500px) {
+
+    .van-float {
+        width: 170%;
+    }
 }

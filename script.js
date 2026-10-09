@@ -1558,7 +1558,7 @@ function adicionarViagem(
         .getElementById("listaViagens");
 
 
-    const iniciais =
+    let iniciais =
         nome
         .split(" ")
         .map(
@@ -1568,6 +1568,15 @@ function adicionarViagem(
         .slice(0, 2)
         .join("")
         .toUpperCase();
+
+    // Protege os textos digitados contra HTML malicioso
+    iniciais = escapeHtml(iniciais);
+    nome = escapeHtml(String(nome || ""));
+    origem = escapeHtml(String(origem || ""));
+    destino = escapeHtml(String(destino || ""));
+    horario = escapeHtml(String(horario || ""));
+    foto = escapeHtml(String(foto || "van.png"));
+
 
 
     const novaViagem = `
@@ -2833,3 +2842,60 @@ document.addEventListener("DOMContentLoaded", function () {
         aplicar(0, 0);
     });
 });
+
+
+/* =====================================================
+DATAS DAS VIAGENS DE DEMONSTRAÇÃO
+Viagens de exemplo com data já passada são atualizadas
+automaticamente para os próximos dias.
+===================================================== */
+
+function vlDataDaquiA(dias) {
+    const d = new Date();
+    d.setDate(d.getDate() + dias);
+    return d.getFullYear() + "-" +
+        String(d.getMonth() + 1).padStart(2, "0") + "-" +
+        String(d.getDate()).padStart(2, "0");
+}
+
+function vlAtualizarDatasDemo() {
+
+    const hoje = vlDataDaquiA(0);
+
+    // 1) Viagens de exemplo salvas no navegador
+    const viagens = vlGetViagens();
+    let alterou = false;
+    let indice = 0;
+
+    viagens.forEach(function (viagem) {
+        if (String(viagem.id || "").indexOf("v_demo_") === 0) {
+            indice++;
+            if (viagem.data && viagem.data < hoje) {
+                viagem.data = vlDataDaquiA(indice + 2);
+                alterou = true;
+            }
+        }
+    });
+
+    if (alterou) {
+        vlSalvarViagens(viagens);
+    }
+
+    // 2) Cartões de exemplo que já vêm escritos no index.html
+    let ordem = 0;
+
+    document.querySelectorAll(".viagem-card[data-data]").forEach(function (card) {
+        ordem++;
+        if (card.dataset.data < hoje) {
+            const nova = vlDataDaquiA(ordem + 2);
+            card.dataset.data = nova;
+
+            const campoData = card.querySelector(".detalhes span");
+            if (campoData && campoData.lastChild) {
+                campoData.lastChild.textContent = " " + formatarData(nova) + " ";
+            }
+        }
+    });
+}
+
+document.addEventListener("DOMContentLoaded", vlAtualizarDatasDemo);

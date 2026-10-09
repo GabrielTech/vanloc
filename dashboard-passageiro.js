@@ -34,7 +34,7 @@ function dpInicial(texto) {
 
 function dpRenderAvatar(passageiro, classe) {
     if (passageiro.foto) {
-        return '<img class="' + classe + '" src="' + passageiro.foto + '" alt="Foto de perfil">';
+        return '<img class="' + classe + '" src="' + dpEscape(passageiro.foto) + '" alt="Foto de perfil">';
     }
     return '<div class="' + classe + ' dp-avatar">' + dpEscape(dpInicial(passageiro.nome)) + '</div>';
 }
@@ -95,7 +95,7 @@ function dpRenderReserva(reserva) {
 function dpAtualizarFotoPreview(passageiro) {
     const box = document.getElementById("dpFotoPreview");
     if (passageiro.foto) {
-        box.innerHTML = '<img src="' + passageiro.foto + '" alt="Foto de perfil">';
+        box.innerHTML = '<img src="' + dpEscape(passageiro.foto) + '" alt="Foto de perfil">';
     } else {
         box.textContent = dpInicial(passageiro.nome);
     }
