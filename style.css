@@ -3674,10 +3674,21 @@ DASHBOARD DO PASSAGEIRO
 .dp-btn.secondary { background: #eef2f7; color: #344054; }
 .dp-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; }
 .dp-empty { padding: 35px; text-align: center; color: #667085; border: 1px dashed #cbd5e1; border-radius: 14px; background: #f8fafc; }
-.dp-trip { display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center; border: 1px solid #e5e7eb; padding: 18px; border-radius: 13px; margin-bottom: 12px; }
+.dp-trip { display: block; border: 1px solid #e5e7eb; padding: 20px; border-radius: 13px; margin-bottom: 14px; background: #fff; }
 .dp-trip h3 { margin: 0 0 7px; font-size: 17px; }
 .dp-trip p { margin: 4px 0; color: #667085; font-size: 14px; }
 .dp-chip { display: inline-block; padding: 5px 9px; border-radius: 999px; background: #dcfce7; color: #15803d; font-size: 12px; font-weight: 800; }
+.dp-trip-topline { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 13px; }
+.dp-trip-code { color: #667085; font-size: 12px; font-weight: 700; }
+.dp-chip--pendente { background: #fff7db; color: #9a6700; }
+.dp-chip--confirmada { background: #dcfce7; color: #15803d; }
+.dp-chip--cancelada { background: #fee2e2; color: #b42318; }
+.dp-trip-details { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
+.dp-trip-details > div { min-width: 0; padding: 12px; border-radius: 10px; background: #f8fafc; }
+.dp-trip-details span, .dp-trip-details strong { display: block; }
+.dp-trip-details span { color: #667085; font-size: 12px; margin-bottom: 5px; }
+.dp-trip-details strong { color: #172554; font-size: 14px; overflow-wrap: anywhere; }
+.dp-trip .dp-trip-created { margin: 15px 0 0; padding-top: 12px; border-top: 1px solid #eef2f6; font-size: 12px; }
 .dp-mobile-menu { display: none; }
 
 @media (max-width: 900px) {
@@ -3695,7 +3706,12 @@ DASHBOARD DO PASSAGEIRO
     .dp-content { padding: 20px 15px; }
     .dp-profile-grid, .dp-form-grid { grid-template-columns: 1fr; }
     .dp-field.full { grid-column: auto; }
-    .dp-trip { grid-template-columns: 1fr; }
+    .dp-trip-details { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 420px) {
+    .dp-trip-topline { align-items: flex-start; flex-direction: column; }
+    .dp-trip-details { grid-template-columns: 1fr; }
 }
 
 

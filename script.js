@@ -976,7 +976,11 @@ vlFormLogin.addEventListener("submit", function(event) {
 
     if (reservaPendente) {
 
-        reservar(reservaPendente.viagem);
+        reservar(
+            reservaPendente.viagem,
+            null,
+            reservaPendente.dadosViagem
+        );
 
         mostrarNotificacao(
             "Login realizado. Você já pode confirmar sua reserva."
@@ -1107,12 +1111,15 @@ RESERVA
 const VL_CHAVE_RESERVA_PENDENTE = "vanloc_reserva_pendente";
 
 
-function vlSalvarReservaPendente(viagem) {
+function vlSalvarReservaPendente(viagem, dadosViagem) {
 
     try {
         sessionStorage.setItem(
             VL_CHAVE_RESERVA_PENDENTE,
-            JSON.stringify({ viagem: String(viagem || "").trim() })
+            JSON.stringify({
+                viagem: String(viagem || "").trim(),
+                dadosViagem: dadosViagem || {}
+            })
         );
     } catch (erro) {
         // A retomada é opcional se o navegador bloquear o armazenamento da sessão.
@@ -1177,14 +1184,81 @@ function irParaCadastroPassageiro(event, email = "") {
 }
 
 
-function reservar(viagem) {
+function vlExtrairDadosViagem(viagem, botaoReserva, dadosSalvos) {
+
+    const partesRota = String(viagem || "").split(/\s+para\s+/i);
+    const dados = {
+        origem: (partesRota.shift() || "").trim(),
+        destino: partesRota.join(" para ").trim(),
+        data: "",
+        horario: "",
+        motoristaNome: "",
+        valor: null
+    };
+
+    const cartao = botaoReserva?.closest?.(".viagem-card");
+
+    if (cartao) {
+        const camposDetalhe = cartao.querySelectorAll(".detalhes span");
+        const motorista = cartao.querySelector(".motorista-info strong");
+        const preco = cartao.querySelector(".preco strong");
+
+        dados.data = camposDetalhe[0]?.innerText?.trim() || "";
+        dados.horario = camposDetalhe[1]?.innerText?.trim() || "";
+        dados.motoristaNome = motorista?.innerText?.trim() || "";
+
+        const textoPreco = (preco?.innerText || "")
+            .replace(/[^\d,.-]/g, "")
+            .replace(/\.(?=\d{3}(?:,|$))/g, "")
+            .replace(",", ".");
+        const valor = Number.parseFloat(textoPreco);
+
+        dados.valor = Number.isFinite(valor) ? valor : null;
+    }
+
+    return { ...dados, ...(dadosSalvos || {}) };
+
+}
+
+
+function vlRegistrarReserva(reserva) {
+
+    let reservas = [];
+
+    try {
+        const salvas = JSON.parse(localStorage.getItem("vanloc_reservas") || "[]");
+        reservas = Array.isArray(salvas) ? salvas : [];
+    } catch (erro) {
+        reservas = [];
+    }
+
+    reservas.unshift(reserva);
+    localStorage.setItem("vanloc_reservas", JSON.stringify(reservas));
+
+}
+
+
+let vlReservaEmAndamento = null;
+
+
+function reservar(viagem, botaoReserva = null, dadosSalvos = null) {
 
     const email = vlGetSessaoPassageiro();
     const passageiro = email ? vlGetPassageiro(email) : null;
+    const dadosViagem = vlExtrairDadosViagem(
+        viagem,
+        botaoReserva,
+        dadosSalvos
+    );
+
+    vlReservaEmAndamento = {
+        viagem: String(viagem || "").trim(),
+        dadosViagem: dadosViagem
+    };
 
     if (!passageiro) {
 
-        vlSalvarReservaPendente(viagem);
+        vlSalvarReservaPendente(viagem, dadosViagem);
 
         const aviso = document.getElementById("avisoLoginReserva");
         if (aviso) {
@@ -1226,7 +1300,11 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("modalReserva")
     ) {
         history.replaceState(null, "", window.location.pathname);
-        reservar(reservaPendente.viagem);
+        reservar(
+            reservaPendente.viagem,
+            null,
+            reservaPendente.dadosViagem
+        );
     }
 
 });
@@ -1246,15 +1324,54 @@ vlFormReserva
     vlLimparReservaPendente();
 
 
+    const email = vlGetSessaoPassageiro();
+    const passageiro = email ? vlGetPassageiro(email) : null;
+
+    if (!passageiro) {
+        fecharReserva();
+        reservar(vlReservaEmAndamento?.viagem || "");
+        return;
+    }
+
+    const dadosViagem = vlReservaEmAndamento?.dadosViagem || {};
+    const quantidade = Math.max(
+        1,
+        Number.parseInt(document.getElementById("campoQuantidadeReserva").value, 10) || 1
+    );
+    const valor = Number(dadosViagem.valor);
+    const reserva = {
+        id: "VNL-" + Date.now().toString(36).toUpperCase(),
+        email: vlNormalizarEmail(email),
+        nome: document.getElementById("campoNomeReserva").value.trim(),
+        telefone: document.getElementById("campoTelefoneReserva").value.trim(),
+        viagem: vlReservaEmAndamento?.viagem || "",
+        origem: dadosViagem.origem || "",
+        destino: dadosViagem.destino || "",
+        data: dadosViagem.data || "",
+        horario: dadosViagem.horario || "",
+        motoristaNome: dadosViagem.motoristaNome || "VANLOC",
+        quantidade: quantidade,
+        valor: Number.isFinite(valor) ? valor : null,
+        status: "Solicitada",
+        criadaEm: new Date().toISOString()
+    };
+
+    vlRegistrarReserva(reserva);
+
+
     fecharReserva();
 
 
     mostrarNotificacao(
-        "Sua reserva foi enviada com sucesso!"
+        "Reserva registrada! Acompanhe os detalhes na sua dashboard."
     );
 
 
     this.reset();
+
+    setTimeout(function() {
+        window.location.href = "dashboard-passageiro.html#reservas";
+    }, 700);
 
 });
 
@@ -1872,7 +1989,7 @@ function adicionarViagem(
                         <button
                             class="btn-reservar"
                             onclick="reservar(
-                                '${escapeHtml(origem)} para ${escapeHtml(destino)}'
+                                '${escapeHtml(origem)} para ${escapeHtml(destino)}', this
                             )"
                         >
 

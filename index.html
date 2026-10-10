@@ -530,7 +530,7 @@ VIAGENS
                         <button
                             class="btn-reservar"
                             onclick="reservar(
-                                'Serra Talhada para Recife'
+                                'Serra Talhada para Recife', this
                             )"
                         >
 
@@ -707,7 +707,7 @@ VIAGENS
                         <button
                             class="btn-reservar"
                             onclick="reservar(
-                                'Recife para Caruaru'
+                                'Recife para Caruaru', this
                             )"
                         >
 
@@ -884,7 +884,7 @@ VIAGENS
                         <button
                             class="btn-reservar"
                             onclick="reservar(
-                                'Serra Talhada para Petrolina'
+                                'Serra Talhada para Petrolina', this
                             )"
                         >
 
@@ -2582,6 +2582,7 @@ MODAL RESERVA
 
             <input
                 type="number"
+                id="campoQuantidadeReserva"
                 min="1"
                 value="1"
                 required

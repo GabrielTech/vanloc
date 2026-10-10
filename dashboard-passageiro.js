@@ -71,8 +71,19 @@ function dpCarregar() {
         '<div style="color:#667085;margin-top:3px">📍 ' + dpEscape(passageiro.cidade || "Localidade não informada") +
         (passageiro.estado ? ' - ' + dpEscape(passageiro.estado) : '') + '</div></div></div>';
 
-    const reservas = JSON.parse(localStorage.getItem("vanloc_reservas") || "[]")
-        .filter(function(item) { return item.email === passageiro.email; });
+    let reservas = [];
+    try {
+        const todasReservas = JSON.parse(localStorage.getItem("vanloc_reservas") || "[]");
+        reservas = (Array.isArray(todasReservas) ? todasReservas : [])
+            .filter(function(item) {
+                return (item.email || "").toLowerCase() === (passageiro.email || "").toLowerCase();
+            })
+            .sort(function(a, b) {
+                return new Date(b.criadaEm || 0) - new Date(a.criadaEm || 0);
+            });
+    } catch (erro) {
+        reservas = [];
+    }
 
     document.getElementById("dpStatReservas").textContent = reservas.length;
     document.getElementById("dpListaReservas").innerHTML = reservas.length
@@ -85,11 +96,57 @@ function dpCarregar() {
 }
 
 function dpRenderReserva(reserva) {
-    return '<div class="dp-trip">' +
-        '<div><span class="dp-chip">Reserva</span>' +
-        '<h3>' + dpEscape(reserva.origem || "Origem") + ' → ' + dpEscape(reserva.destino || "Destino") + '</h3>' +
-        '<p>📅 ' + dpEscape(reserva.data || "Data não informada") + ' &nbsp; ⏰ ' + dpEscape(reserva.horario || "Horário não informado") + '</p>' +
-        '</div><div><strong>' + dpEscape(reserva.motoristaNome || "VANLOC") + '</strong></div></div>';
+    const status = reserva.status || "Solicitada";
+    const statusLower = status.toLowerCase();
+    const statusClass = statusLower.includes("confirm")
+        ? "confirmada"
+        : statusLower.includes("cancel")
+            ? "cancelada"
+            : "pendente";
+    const statusLabel = statusLower.includes("solicit")
+        ? "Reserva solicitada"
+        : status;
+    const quantidade = Math.max(1, Number.parseInt(reserva.quantidade, 10) || 1);
+    const valor = Number(reserva.valor);
+    const temValor = Number.isFinite(valor) && valor > 0;
+    const moeda = new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    });
+    const total = temValor ? moeda.format(valor * quantidade) : "A confirmar";
+    const unitario = temValor ? moeda.format(valor) : "A confirmar";
+    let realizadaEm = "Agora há pouco";
+
+    if (reserva.criadaEm) {
+        const dataCriacao = new Date(reserva.criadaEm);
+        if (!Number.isNaN(dataCriacao.getTime())) {
+            realizadaEm = dataCriacao.toLocaleString("pt-BR", {
+                dateStyle: "short",
+                timeStyle: "short"
+            });
+        }
+    }
+
+    const rota = reserva.origem || reserva.destino
+        ? dpEscape(reserva.origem || "Origem") + " → " + dpEscape(reserva.destino || "Destino")
+        : dpEscape(reserva.viagem || "Viagem reservada");
+
+    return '<article class="dp-trip">' +
+        '<div class="dp-trip-topline">' +
+        '<span class="dp-chip dp-chip--' + statusClass + '">' + dpEscape(statusLabel) + '</span>' +
+        '<span class="dp-trip-code">Código: ' + dpEscape(reserva.id || "—") + '</span>' +
+        '</div>' +
+        '<h3>' + rota + '</h3>' +
+        '<div class="dp-trip-details">' +
+        '<div><span>Data da viagem</span><strong>' + dpEscape(reserva.data || "Não informada") + '</strong></div>' +
+        '<div><span>Horário de saída</span><strong>' + dpEscape(reserva.horario || "Não informado") + '</strong></div>' +
+        '<div><span>Motorista</span><strong>' + dpEscape(reserva.motoristaNome || "VANLOC") + '</strong></div>' +
+        '<div><span>Passageiros</span><strong>' + quantidade + (quantidade === 1 ? " pessoa" : " pessoas") + '</strong></div>' +
+        '<div><span>Valor por pessoa</span><strong>' + unitario + '</strong></div>' +
+        '<div><span>Total estimado</span><strong>' + total + '</strong></div>' +
+        '</div>' +
+        '<p class="dp-trip-created">Solicitada em ' + dpEscape(realizadaEm) + ' · Salva neste dispositivo. Confirme a disponibilidade diretamente com o motorista.</p>' +
+        '</article>';
 }
 
 function dpAtualizarFotoPreview(passageiro) {
@@ -111,6 +168,10 @@ function dpRemoverFoto() {
 
 document.addEventListener("DOMContentLoaded", function() {
     dpCarregar();
+
+    if (window.location.hash === "#reservas") {
+        dpMostrarAba("reservas");
+    }
 
     const inputFoto = document.getElementById("dpFotoInput");
     if (inputFoto) {
