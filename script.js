@@ -812,14 +812,23 @@ MODAIS
 
 function abrirLogin() {
 
+    const avisoReserva = document.getElementById("avisoLoginReserva");
+    if (avisoReserva && !vlGetReservaPendente()) {
+        avisoReserva.style.display = "none";
+    }
+
     document.getElementById("modalLogin").style.display = "block";
 
 }
 
 
-function fecharLogin() {
+function fecharLogin(cancelarReserva = false) {
 
     document.getElementById("modalLogin").style.display = "none";
+
+    if (cancelarReserva) {
+        vlLimparReservaPendente();
+    }
 
 }
 
@@ -867,6 +876,10 @@ window.onclick = function(event) {
         if (event.target === modal) {
 
             modal.style.display = "none";
+
+            if (modal.id === "modalLogin") {
+                vlLimparReservaPendente();
+            }
 
         }
 
@@ -935,8 +948,10 @@ vlFormLogin.addEventListener("submit", function(event) {
 
     if (!passageiro) {
 
+        irParaCadastroPassageiro(null, email);
+
         mostrarNotificacao(
-            "Conta não encontrada. Cadastre-se como passageiro primeiro."
+            "Faça seu cadastro de passageiro para continuar com a reserva."
         );
 
         return;
@@ -956,6 +971,20 @@ vlFormLogin.addEventListener("submit", function(event) {
     fecharLogin();
 
     atualizarHeaderPassageiro();
+
+    const reservaPendente = vlGetReservaPendente();
+
+    if (reservaPendente) {
+
+        reservar(reservaPendente.viagem);
+
+        mostrarNotificacao(
+            "Login realizado. Você já pode confirmar sua reserva."
+        );
+
+        return;
+
+    }
 
     mostrarNotificacao("Login realizado com sucesso! Redirecionando...");
 
@@ -1046,6 +1075,8 @@ vlFormCadastroPassageiro.addEventListener("submit", function(event) {
 
     };
 
+    const reservaPendente = vlGetReservaPendente();
+
     vlSalvarPassageiro(passageiro);
     vlSalvarSessaoPassageiro(email);
 
@@ -1057,7 +1088,9 @@ vlFormCadastroPassageiro.addEventListener("submit", function(event) {
 
     setTimeout(function() {
 
-        window.location.href = "dashboard-passageiro.html";
+        window.location.href = reservaPendente
+            ? "index.html?retomarReserva=1"
+            : "dashboard-passageiro.html";
 
     }, 700);
 
@@ -1071,7 +1104,103 @@ RESERVA
 ===================================================== */
 
 
+const VL_CHAVE_RESERVA_PENDENTE = "vanloc_reserva_pendente";
+
+
+function vlSalvarReservaPendente(viagem) {
+
+    try {
+        sessionStorage.setItem(
+            VL_CHAVE_RESERVA_PENDENTE,
+            JSON.stringify({ viagem: String(viagem || "").trim() })
+        );
+    } catch (erro) {
+        // A retomada é opcional se o navegador bloquear o armazenamento da sessão.
+    }
+
+}
+
+
+function vlGetReservaPendente() {
+
+    try {
+        const reserva = JSON.parse(
+            sessionStorage.getItem(VL_CHAVE_RESERVA_PENDENTE) || "null"
+        );
+
+        return reserva && typeof reserva.viagem === "string" && reserva.viagem
+            ? reserva
+            : null;
+    } catch (erro) {
+        return null;
+    }
+
+}
+
+
+function vlLimparReservaPendente() {
+
+    try {
+        sessionStorage.removeItem(VL_CHAVE_RESERVA_PENDENTE);
+    } catch (erro) {
+        // O restante do fluxo não depende de sessionStorage.
+    }
+
+}
+
+
+function irParaCadastroPassageiro(event, email = "") {
+
+    event?.preventDefault();
+
+    const modalLogin = document.getElementById("modalLogin");
+    if (modalLogin) {
+        modalLogin.style.display = "none";
+    }
+
+    const campoEmail = document.getElementById("passageiroEmail");
+    if (campoEmail && email) {
+        campoEmail.value = email;
+    }
+
+    const formulario = document.querySelector(".card-cadastro-passageiro");
+    formulario?.scrollIntoView({ behavior: "smooth", block: "center" });
+
+    if (window.history && window.history.replaceState) {
+        window.history.replaceState(null, "", "#passageiro");
+    }
+
+    setTimeout(function() {
+        document.getElementById("passageiroNome")?.focus();
+    }, 350);
+
+}
+
+
 function reservar(viagem) {
+
+    const email = vlGetSessaoPassageiro();
+    const passageiro = email ? vlGetPassageiro(email) : null;
+
+    if (!passageiro) {
+
+        vlSalvarReservaPendente(viagem);
+
+        const aviso = document.getElementById("avisoLoginReserva");
+        if (aviso) {
+            aviso.style.display = "block";
+        }
+
+        abrirLogin();
+
+        return;
+
+    }
+
+    vlLimparReservaPendente();
+
+    document.getElementById("campoNomeReserva").value = passageiro.nome || "";
+    document.getElementById("campoTelefoneReserva").value = passageiro.telefone || "";
 
     document
     .getElementById("modalReserva")
@@ -1086,6 +1215,23 @@ function reservar(viagem) {
 }
 
 
+document.addEventListener("DOMContentLoaded", function() {
+
+    const parametros = new URLSearchParams(window.location.search);
+    const reservaPendente = vlGetReservaPendente();
+
+    if (
+        parametros.get("retomarReserva") === "1" &&
+        reservaPendente &&
+        document.getElementById("modalReserva")
+    ) {
+        history.replaceState(null, "", window.location.pathname);
+        reservar(reservaPendente.viagem);
+    }
+
+});
+
+
 const vlFormReserva =
     document.getElementById("formReserva");
 
@@ -1095,6 +1241,9 @@ vlFormReserva
 .addEventListener("submit", function(event) {
 
     event.preventDefault();
+
+
+    vlLimparReservaPendente();
 
 
     fecharReserva();

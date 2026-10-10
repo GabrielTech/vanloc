@@ -1631,7 +1631,7 @@ MODAL LOGIN
 
         <button
             class="fechar"
-            onclick="fecharLogin()"
+            onclick="fecharLogin(true)"
         >
 
             &times;
@@ -1660,6 +1660,17 @@ MODAL LOGIN
 
 
         </div>
+
+
+
+        <p
+            id="avisoLoginReserva"
+            class="subtitulo"
+            role="status"
+            style="display:none"
+        >
+            Para reservar, faça login. Se ainda não tem cadastro, use o link abaixo para criar sua conta de passageiro.
+        </p>
 
 
 
@@ -1706,7 +1717,7 @@ MODAL LOGIN
 
                 <a
                     href="#passageiro"
-                    onclick="fecharLogin()"
+                    onclick="irParaCadastroPassageiro(event)"
                 >
 
                     Criar conta
@@ -2541,6 +2552,7 @@ MODAL RESERVA
 
             <input
                 type="text"
+                id="campoNomeReserva"
                 required
             >
 
@@ -2555,6 +2567,7 @@ MODAL RESERVA
 
             <input
                 type="tel"
+                id="campoTelefoneReserva"
                 required
             >
 
